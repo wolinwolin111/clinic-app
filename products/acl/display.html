@@ -1,0 +1,881 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACL重建术后康复指南 - 参考10部专业著作制定</title>
+<style>
+  :root {
+    --primary: #81D8CF;
+    --primary-dark: #5ABFB5;
+    --primary-light: #E0F7F4;
+    --accent: #ff6b35;
+    --warn: #f57c00;
+    --danger: #d32f2f;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --text-muted: #636e72;
+    --border: #e0e0e0;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #5ABFB5 0%, #81D8CF 50%, #B2EBE5 100%);
+    color: #ffffff;
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+  .header p { font-size: 15px; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 12px;
+    color: #fff;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  /* Phase Tabs */
+  .phase-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 20px 0 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    scrollbar-width: none;
+  }
+  .phase-tabs::-webkit-scrollbar { display: none; }
+  .phase-tab {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+  }
+  .phase-tab:hover { background: var(--primary-light); color: var(--primary); }
+  .phase-tab.active {
+    background: var(--card);
+    color: var(--primary-dark);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  }
+  .phase-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+  }
+
+  /* Main Content */
+  .main { padding: 0 0 60px; }
+
+  .phase-content { display: none; }
+  .phase-content.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .card h3 {
+    font-size: 16px;
+    color: var(--text);
+    margin: 20px 0 10px;
+  }
+  .card h3:first-of-type { margin-top: 0; }
+
+  /* Info Boxes */
+  .info-box {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 14px;
+    border-left: 4px solid;
+  }
+  .info-box.info {
+    background: #e3f2fd;
+    border-color: #1976d2;
+    color: #1565c0;
+  }
+  .info-box.warn {
+    background: #fff3e0;
+    border-color: var(--warn);
+    color: #e65100;
+  }
+  .info-box.danger {
+    background: #fce4ec;
+    border-color: var(--danger);
+    color: #c62828;
+  }
+  .info-box.success {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: #1b5e20;
+  }
+
+  /* Exercise Item */
+  .exercise {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .exercise:last-child { border-bottom: none; }
+  .exercise-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .exercise-icon.green { background: #e8f5e9; }
+  .exercise-icon.blue { background: #e3f2fd; }
+  .exercise-icon.orange { background: #fff3e0; }
+  .exercise-icon.purple { background: #f3e5f5; }
+  .exercise-body { flex: 1; }
+  .exercise-body h4 { font-size: 15px; margin-bottom: 4px; }
+  .exercise-body p { font-size: 14px; color: var(--text-muted); }
+  .exercise-body .meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .exercise-body .meta span {
+    background: var(--bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+  }
+
+  /* Milestone */
+  .milestone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 14px;
+  }
+  .milestone .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .milestone .dot.green { background: #4caf50; }
+  .milestone .dot.yellow { background: #ff9800; }
+  .milestone .dot.red { background: #f44336; }
+
+  /* Checklist */
+  .checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+  }
+  .checklist label.checked {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+
+  /* Key-box */
+  .key-box {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+    border: 1px solid #a7f3d0;
+    border-radius: 10px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .key-box-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: white;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .key-box-body { padding: 12px 16px 14px; font-size: 14px; color: var(--text); }
+  .key-box-body .item { display: flex; gap: 8px; margin-top: 8px; font-weight: 600; color: var(--text); }
+  .key-box-body .dot {
+    flex-shrink: 0; width: 6px; height: 6px;
+    border-radius: 50%; margin-top: 8px;
+  }
+  .key-box-body .dot.teal { background: var(--primary-dark); }
+  .key-box-body .dot.orange { background: #f59e0b; }
+  .key-box-body .dot.red { background: #f44336; }
+  .key-box-body .title { font-weight: 600; }
+  .key-box-body .title.teal { color: var(--primary-dark); }
+  .key-box-body .title.orange { color: #e65100; }
+  .key-box-body .title.red { color: #c62828; }
+  .key-box-body .sub-label { color: #f59e0b; font-weight: 600; }
+  .key-box-body .sub-text { color: #000000; font-size: 12px; font-weight: 600; }
+  .key-box-body .dot.mint { background: #81D8CF; }
+  .key-box-body .dot.peach { background: #FCD34D; }
+  .key-box-body .dot.lavender { background: #A78BFA; }
+  .key-box-body .dot.rose { background: #FF4D6D; }
+  .key-box-body .dot.coral { background: #FB923C; }
+  .key-box-body .dot.blue { background: #60A5FA; }
+
+  /* Compare table */
+  .compare-table { width:100%; border-collapse: collapse; font-size:14px; margin: 12px 0; }
+  .compare-table th {
+    padding: 10px; text-align: left;
+    background: var(--primary-light);
+    border-bottom: 2px solid var(--primary-dark);
+  }
+  .compare-table td { padding: 10px; border-bottom: 1px solid var(--border); }
+  .compare-table .highlight { background: #fff3e0; }
+
+  /* Progress bar */
+  .progress-section { margin: 16px 0; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .progress-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s;
+  }
+
+  /* Pain scale */
+  .pain-note {
+    padding: 16px;
+    background: #fff3e0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .pain-note h4 { color: var(--warn); margin-bottom: 8px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px; }
+    .exercise { gap: 10px; }
+    .exercise-icon { width: 32px; height: 32px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🦵 ACL重建术后康复指南</h1>
+  <span class="badge">自体腘绳肌 / LARS人工韧带 / 骨-髌腱-骨 通用</span>
+</div>
+
+<div class="container">
+  <!-- Phase Tabs -->
+  <div class="phase-tabs" id="tabs">
+    <button class="phase-tab active" data-phase="0">📋 总览</button>
+    <button class="phase-tab" data-phase="1">🛌 0-2周</button>
+    <button class="phase-tab" data-phase="2">🚶 2-4周</button>
+    <button class="phase-tab" data-phase="3">🚴 4-6周</button>
+    <button class="phase-tab" data-phase="4">🏋️ 6-8周</button>
+    <button class="phase-tab" data-phase="5">🏃 8-12周</button>
+    <button class="phase-tab" data-phase="6">⚡ 12周+</button>
+  </div>
+
+  <div class="main">
+    <!-- ========== OVERVIEW ========== -->
+    <div class="phase-content active" data-phase="0">
+
+      <div style="background:#fff3e0;border-radius:12px;padding:14px 18px;margin-bottom:14px;border:1px solid #FFE082;font-size:13px;color:#333;line-height:1.6;">
+        <strong style="font-size:14px;">📋 使用说明</strong><br>
+        本指南仅供参考与学习，不构成医疗建议。ACL重建术后康复因个体差异（手术方式、移植物类型、身体条件等）而不同，请务必在您的主治医师或康复治疗师指导下进行训练。作者不对因使用本指南而导致的任何损伤或后果承担责任。训练中出现疼痛加重或不适，请立即停止并咨询专业医师。
+      </div>
+
+      <div class="card">
+        <h2>🦵 ACL重建术后康复总览</h2>
+        <p style="margin-bottom:16px;">前交叉韧带（ACL）是膝关节最重要的前向稳定结构，防止胫骨前移和过度旋转。ACL重建术后康复的核心目标是：保护移植物愈合、恢复膝关节稳定性、重获全范围活动度、重建神经肌肉控制、恢复正常步态和运动功能。</p>
+
+        <!-- 关键时期 — 淡色横幅 -->
+        <div style="background:#fce4ec;border-radius:14px;padding:18px 22px;margin:16px 0;border:1px solid #fce4ec;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+            <span style="font-size:20px;">⚠️</span>
+            <strong style="font-size:16px;color:#000;">关键时期：术后0-12周 — 移植物"韧带化"阶段</strong>
+          </div>
+          <p style="font-size:13px;color:#000;line-height:1.7;margin:0;">
+            术后早期移植物力学强度最弱，<strong style="color:#EC4899;">术后6-12周是移植物强度最低点</strong>（血管再通过程中胶原降解）。错误的负荷或过度活动可直接导致移植物失效。《骨科术后康复指南》强调：方案应根据移植物类型（腘绳肌/髌腱/异体腱）个体化调整。
+          </p>
+        </div>
+
+        <h3 style="margin-top:20px;">🌸 移植物愈合四阶段</h3>
+        <p style="font-size:13px;color:#000;margin-bottom:14px;">
+          移植物植入后经历"韧带化"过程：从肌腱组织逐渐重塑为类似原生ACL的韧带组织。<strong style="color:#EC4899;">术后6-12周是移植物力学强度最低点</strong>（胶原降解期）。整个重塑持续1-2年。
+        </p>
+
+        <!-- 强度曲线图（移至四阶段前） -->
+        <div style="text-align:center;margin:14px 0;max-width:650px;margin-left:auto;margin-right:auto;">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px 16px 16px;overflow:hidden;">
+            <svg viewBox="0 0 620 300" style="width:100%;height:auto;display:block;">
+              <!-- 标题 -->
+              <text x="310" y="18" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Graft strength</text>
+              <!-- 坐标轴 -->
+              <line x1="50" y1="250" x2="600" y2="250" stroke="#999" stroke-width="1"/>
+              <line x1="50" y1="30" x2="50" y2="250" stroke="#999" stroke-width="1"/>
+              <!-- 网格线 -->
+              <g stroke="#e0e0e0" stroke-width="0.5">
+                <line x1="50" y1="50" x2="600" y2="50"/>
+                <line x1="50" y1="75" x2="600" y2="75"/>
+                <line x1="50" y1="100" x2="600" y2="100"/>
+                <line x1="50" y1="125" x2="600" y2="125"/>
+                <line x1="50" y1="150" x2="600" y2="150"/>
+                <line x1="50" y1="175" x2="600" y2="175"/>
+                <line x1="50" y1="200" x2="600" y2="200"/>
+                <line x1="50" y1="225" x2="600" y2="225"/>
+              </g>
+              <!-- Y轴标签 (相对强度 0-10) -->
+              <text x="45" y="253" text-anchor="end" font-size="10" fill="#666">0</text>
+              <text x="45" y="230" text-anchor="end" font-size="10" fill="#666">1</text>
+              <text x="45" y="205" text-anchor="end" font-size="10" fill="#666">2</text>
+              <text x="45" y="180" text-anchor="end" font-size="10" fill="#666">3</text>
+              <text x="45" y="155" text-anchor="end" font-size="10" fill="#666">4</text>
+              <text x="45" y="130" text-anchor="end" font-size="10" fill="#666">5</text>
+              <text x="45" y="105" text-anchor="end" font-size="10" fill="#666">6</text>
+              <text x="45" y="80" text-anchor="end" font-size="10" fill="#666">7</text>
+              <text x="45" y="55" text-anchor="end" font-size="10" fill="#666">8</text>
+              <text x="45" y="40" text-anchor="end" font-size="10" fill="#666">9</text>
+              <text x="45" y="35" text-anchor="end" font-size="10" fill="#666">10</text>
+              <!-- X轴标签 (月 0-24) -->
+              <text x="50" y="265" text-anchor="middle" font-size="9" fill="#666">0</text>
+              <text x="73" y="265" text-anchor="middle" font-size="9" fill="#666">1</text>
+              <text x="96" y="265" text-anchor="middle" font-size="9" fill="#666">2</text>
+              <text x="119" y="265" text-anchor="middle" font-size="9" fill="#666">3</text>
+              <text x="142" y="265" text-anchor="middle" font-size="9" fill="#666">4</text>
+              <text x="165" y="265" text-anchor="middle" font-size="9" fill="#666">5</text>
+              <text x="188" y="265" text-anchor="middle" font-size="9" fill="#666">6</text>
+              <text x="211" y="265" text-anchor="middle" font-size="9" fill="#666">7</text>
+              <text x="234" y="265" text-anchor="middle" font-size="9" fill="#666">8</text>
+              <text x="257" y="265" text-anchor="middle" font-size="9" fill="#666">9</text>
+              <text x="280" y="265" text-anchor="middle" font-size="9" fill="#666">10</text>
+              <text x="303" y="265" text-anchor="middle" font-size="9" fill="#666">11</text>
+              <text x="326" y="265" text-anchor="middle" font-size="9" fill="#666">12</text>
+              <text x="349" y="265" text-anchor="middle" font-size="9" fill="#666">13</text>
+              <text x="372" y="265" text-anchor="middle" font-size="9" fill="#666">14</text>
+              <text x="395" y="265" text-anchor="middle" font-size="9" fill="#666">15</text>
+              <text x="418" y="265" text-anchor="middle" font-size="9" fill="#666">16</text>
+              <text x="441" y="265" text-anchor="middle" font-size="9" fill="#666">17</text>
+              <text x="464" y="265" text-anchor="middle" font-size="9" fill="#666">18</text>
+              <text x="487" y="265" text-anchor="middle" font-size="9" fill="#666">19</text>
+              <text x="510" y="265" text-anchor="middle" font-size="9" fill="#666">20</text>
+              <text x="533" y="265" text-anchor="middle" font-size="9" fill="#666">21</text>
+              <text x="556" y="265" text-anchor="middle" font-size="9" fill="#666">22</text>
+              <text x="579" y="265" text-anchor="middle" font-size="9" fill="#666">23</text>
+              <text x="600" y="265" text-anchor="middle" font-size="9" fill="#666">24</text>
+              <!-- X轴标题 -->
+              <text x="325" y="282" text-anchor="middle" font-size="11" fill="#666">Time, months</text>
+              <!-- Y轴标题 -->
+              <text x="15" y="140" text-anchor="middle" font-size="11" fill="#666" transform="rotate(-90,15,140)">Relative strength</text>
+              <!-- 强度曲线（精确还原参考图） -->
+              <path d="M50,35 L73,57 L96,207 L119,218 L142,218 L165,207 L188,196 L211,186 L234,165 L257,143 L280,121 L303,100 L326,89 L349,78 L372,67 L395,57 L418,46 L441,46 L464,46 L487,46 L510,46 L533,46 L556,46 L579,46 L600,46"
+                    stroke="#4A7C9B" stroke-width="2" fill="none" stroke-linejoin="round"/>
+              <!-- 最低点标记 -->
+              <circle cx="119" cy="218" r="3" fill="#EF4444"/>
+              <text x="119" y="236" text-anchor="middle" font-size="8" fill="#EF4444">最低点(3-4月)</text>
+            </svg>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">
+            <strong>图1</strong> 韧带化各阶段与力学强度变化。早期愈合→增殖期强度急剧下降，成熟期逐步恢复。
+            （参考: Boyd et al. Ann Joint 2024）
+          </div>
+        </div>
+
+        <!-- 四阶段卡片 2×2 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;">
+          <!-- 炎症期 -->
+          <div style="background:#fce4ec;border-radius:12px;padding:10px 14px;border:1px solid #fce4ec;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-weight:700;font-size:14px;color:#000;">🩸 炎症期</span>
+              <span style="font-weight:700;font-size:14px;color:#000;">0-4周</span>
+            </div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">移植物细胞坏死、炎症细胞浸润，尚<u>无血管再通</u>。力学强度主要由缝线和固定物提供。</div>
+          </div>
+          <!-- 增殖/血管再通期 -->
+          <div style="background:#fff3e0;border-radius:12px;padding:10px 14px;border:1px solid #fff3e0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-weight:700;font-size:14px;color:#000;">🌱 增殖 / 血管再通期</span>
+              <span style="font-weight:700;font-size:14px;color:#000;">4-12周</span>
+            </div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">血管长入，<strong style="color:#f59e0b;">6-12周达高峰</strong>；胶原降解使力学强度降至<strong style="color:#EC4899;">最低点</strong>（最脆弱期！）</div>
+          </div>
+          <!-- 韧带化期 -->
+          <div style="background:#EDFBF4;border-radius:12px;padding:10px 14px;border:1px solid #a7f3d0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-weight:700;font-size:14px;color:#000;">🌿 韧带化期</span>
+              <span style="font-weight:700;font-size:14px;color:#000;">12-36周</span>
+            </div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">胶原纤维沿应力线排列，移植物逐渐具备韧带样特性。<strong style="color:#10B981;">可逐步增加负荷训练</strong>。</div>
+          </div>
+          <!-- 成熟塑形期 -->
+          <div style="background:#f3e5f5;border-radius:12px;padding:10px 14px;border:1px solid #C8D0F0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-weight:700;font-size:14px;color:#000;">✨ 成熟塑形期</span>
+              <span style="font-weight:700;font-size:14px;color:#000;">36周+</span>
+            </div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">力学性能接近原生ACL，但超微结构差异可持续至<strong style="color:#8B5CF6;">2年以上</strong>。长期维护和预防再伤。</div>
+          </div>
+        </div>
+
+        <div style="font-size:13px;color:var(--text);padding:16px 18px;background:#f8f9fa;border-radius:12px;border-left:4px solid #FF4D6D;margin-top:8px;">
+          <strong style="font-size:14px;">🧠 ACL是本体感觉器官</strong><br>
+          ACL富含机械感受器（Ruffini小体、Pacinian小体），损伤后不仅破坏力学稳定，还中断了传入神经信号，导致膝关节位置感和动态稳定性下降。重建术后本体感觉的恢复需要专门的训练，而非仅靠肌力恢复。《神经减张疗法》指出：ACL损伤后中枢神经系统出现可塑性改变——患者会更依赖视觉信息维持平衡，减少对本体感觉的依赖。针对性的本体感觉训练（闭眼站立、平衡板、抛接球）是回归运动的重要环节。
+        </div>
+
+        <div style="font-size:13px;color:var(--text);padding:16px 18px;background:#f8f9fa;border-radius:12px;border-left:4px solid #81D8CF;margin-top:10px;">
+          <strong style="font-size:14px;">🔗 筋膜链视角（《解剖列车》）</strong><br>
+          ACL损伤不仅是韧带的局部问题。深前线（Deep Front Line）从足底→胫骨后肌→骨间膜→膝关节囊内侧→内收肌→腰大肌→膈肌，形成跨越全身的肌筋膜链。ACL损伤会破坏这条筋膜链的连续性，导致从足到膈肌的功能代偿。康复不应只关注股四头肌和腘绳肌，还应包括胫骨后肌（控制胫骨位置）、内收肌群、腰大肌和呼吸膈肌的训练。膝外翻塌陷是通过侧线和螺旋线介导的，而非仅仅是局部韧带问题。
+        </div>
+
+      <!-- ACL重建手术详解 -->
+      <div class="key-box">
+        <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">📌 ACL重建手术详解与移植物选择</div>
+        <div class="key-box-body" style="display:flex;flex-direction:column;gap:10px;">
+
+          <!-- 移植物强度对比图 -->
+          <div style="background:#F3E5F5;border:1px solid #E1BEE7;border-radius:10px;padding:14px 16px;margin-bottom:6px;">
+            <div style="font-size:13px;font-weight:700;color:#4A148C;margin-bottom:10px;text-align:center;">📊 ACL移植物生物力学特性对比</div>
+            <svg viewBox="0 0 550 210" style="width:100%;max-width:530px;height:auto;display:block;margin:0 auto;">
+              <line x1="60" y1="10" x2="60" y2="170" stroke="#666" stroke-width="1.5"/>
+              <line x1="60" y1="170" x2="540" y2="170" stroke="#666" stroke-width="1.5"/>
+              <text x="25" y="95" text-anchor="middle" font-size="9" fill="#666" transform="rotate(-90,25,95)">极限负荷 (N)</text>
+              <text x="55" y="170" text-anchor="end" font-size="8" fill="#666">0</text>
+              <text x="55" y="140" text-anchor="end" font-size="8" fill="#666">1000</text>
+              <text x="55" y="110" text-anchor="end" font-size="8" fill="#666">2000</text>
+              <text x="55" y="80" text-anchor="end" font-size="8" fill="#666">3000</text>
+              <text x="55" y="50" text-anchor="end" font-size="8" fill="#666">4000</text>
+              <text x="55" y="20" text-anchor="end" font-size="8" fill="#666">5000</text>
+              <line x1="60" y1="140" x2="540" y2="140" stroke="#E0E0E0" stroke-width="0.5" stroke-dasharray="4,4"/>
+              <line x1="60" y1="110" x2="540" y2="110" stroke="#E0E0E0" stroke-width="0.5" stroke-dasharray="4,4"/>
+              <line x1="60" y1="80" x2="540" y2="80" stroke="#E0E0E0" stroke-width="0.5" stroke-dasharray="4,4"/>
+              <line x1="60" y1="50" x2="540" y2="50" stroke="#E0E0E0" stroke-width="0.5" stroke-dasharray="4,4"/>
+              <line x1="60" y1="105" x2="540" y2="105" stroke="#D32F2F" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="542" y="108" font-size="8" fill="#D32F2F">← 原生ACL ≈2160N（Woo 1991）</text>
+              <rect x="80" y="46" width="70" height="124" rx="4" fill="#388E3C" opacity="0.85"/>
+              <text x="115" y="165" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">腘绳肌腱</text>
+              <text x="115" y="41" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">4140N</text>
+              <rect x="170" y="82" width="70" height="88" rx="4" fill="#E65100" opacity="0.85"/>
+              <text x="205" y="165" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">骨-髌腱-骨</text>
+              <text x="205" y="77" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">2977N</text>
+              <rect x="260" y="99" width="70" height="71" rx="4" fill="#1565C0" opacity="0.85"/>
+              <text x="295" y="165" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">股四头肌腱</text>
+              <text x="295" y="94" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">2353N</text>
+              <rect x="370" y="33" width="70" height="137" rx="4" fill="#7B1FA2" opacity="0.85"/>
+              <text x="405" y="165" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">LARS</text>
+              <text x="405" y="28" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">4600N</text>
+            </svg>
+            <div style="font-size:10px;color:#666;text-align:center;margin-top:4px;">注：原生ACL极限负荷约2160N（Woo 1991）。腘绳肌腱约4140N，骨-髌腱-骨约2977N，股四头肌腱约2353N，LARS 8mm约4600N（Banovetz 2023综述；Bourlos 2016）。</div>
+          </div>
+
+          <div style="background:#fce4ec;border:1px solid #fce4ec;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">🦴</span><strong style="font-size:14px;">① 自体骨-髌腱-骨（BTB）</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              取髌腱中1/3连同两端的骨块（骨-肌腱-骨结构）。这是ACL重建中最经典、循证数据最丰富的移植物，尤其适用于年轻、高运动需求的患者。<br><br>
+              <strong>解剖特点：</strong>骨-肌腱-骨结构允许骨-骨愈合（约6周），比肌腱-骨愈合更快更牢固。截面积11.6mm²。<br>
+              <strong>极限负荷（Ultimate Load）：</strong>约2977N（Noyes 1984），刚度210-278 N/mm。<br>
+              <strong>优势：</strong>骨-骨愈合快、长期随访数据最丰富（>20年），长期成功率约85%。是唯一拥有>20年循证数据的移植物。<br>
+              <strong>代价：</strong>膝前痛（10-30%）、跪姿不适、取腱处髌腱可能变薄。<br>
+              <strong>术后康复关键点：</strong>标准康复方案——但需注意伸膝装置保护，避免早期开链伸膝。
+            </div>
+          </div>
+
+          <div style="background:#fff3e0;border:1px solid #fff3e0;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">🧵</span><strong style="font-size:14px;">② 自体腘绳肌腱（最常用，占60-70%）</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              取半腱肌腱和股薄肌腱，编织成4股重建ACL。这是目前国际上最常用的移植物选择。截面积45.2mm²（所有自体移植物中最大）。<br><br>
+              <strong>极限负荷（Ultimate Load）：</strong>约4140N（Noyes 1984），刚度238 N/mm。是<strong>最强的自体移植物</strong>，超过原生ACL（2160N）近2倍。<br>
+              <strong>解剖特点：</strong>腘绳肌腱呈圆柱状（管状），而原生ACL呈扁平带状——因此需要编织成4股以模拟原生ACL的解剖形态。<br>
+              <strong>优势：</strong>无膝前痛、取腱方便、愈合快（6-8周血管化）；术后康复可按标准时间线进阶。<br>
+              <strong>代价：</strong>取腱后膝后内侧疼痛（可热敷缓解）、屈膝肌力暂时下降（术后6-8周通过交叉教育逐步恢复）。<br>
+              <strong>力学悖论：</strong>虽然腘绳肌腱极限负荷（4140N）远高于BTB（2977N），但临床研究发现年轻高活动量患者中BTB失败率更低。原因：①固定装置强度限制（界面螺钉/悬吊固定仅能承受400-800N，远低于两种移植物的极限负荷）；②软组织-骨愈合慢于骨-骨愈合；③血管化更依赖自身条件。<br>
+              <strong>术后康复关键点：</strong>标准康复方案——但需注意腘绳肌离心训练，恢复H/Q比值（理想≥60%）。
+            </div>
+          </div>
+
+          <div style="background:#FCE4EC;border:1px solid #FCE4EC;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">⚡</span><strong style="font-size:14px;">③ 股四头肌腱（QT）</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              取股四头肌腱中1/3，可带骨块（骨-肌腱-骨）或不带骨块。近年来越来越受欢迎，是相对较新的移植物选择。<br><br>
+              <strong>极限负荷（Ultimate Load）：</strong>约2353N（Shani 2016），刚度466 N/mm（所有移植物中<strong>最高</strong>，最接近原生ACL的242 N/mm）。截面积最大（约85.9mm²）。<br>
+              <strong>优势：</strong>可用于翻修手术、取腱后对伸膝装置影响小于BTB、膝前痛发生率低于BTB。<br>
+              <strong>代价：</strong>取腱处可能出现血肿、伸膝装置功能暂时下降。<br>
+              <strong>术后康复关键点：</strong>标准康复方案——但需注意伸膝装置保护，避免早期开链伸膝。
+            </div>
+          </div>
+
+          <div style="background:#F3E5F5;border:1px solid #CE93D8;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">🔬</span><strong style="font-size:14px;">④ LARS人工韧带（合成移植物）</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              目前最常用的人工韧带产品。材料为聚对苯二甲酸乙二醇酯（PET）纤维，预扭转90°。关节内部分为纵向游离纤维（允许成纤维细胞长入），隧道内部分为横向编织结构。<br><br>
+              <strong>极限负荷（Ultimate Load）：</strong>7.5mm约3600N，8.0mm约4600N（Bourlos 2016）。是所有移植物中<strong>最高</strong>，约为原生ACL的1.7-2.1倍。<br>
+              <strong>优势：</strong>无需血管化过程、即刻提供最大稳定性、允许纤维间组织长入（约1个月开始）。术后早期稳定性优于自体移植物（1年A-P正常率91% vs 腘绳肌36%）。中国CFDA 2004年批准，已应用>30000例。<br>
+              <strong>代价：</strong>非生物活性材料——PET表面光滑疏水，细胞难以粘附，缺乏真正的生物学整合。长期随访不满意率可能>40%；存在滑膜炎、隧道扩大和松动风险。2年后效果与自体移植物趋同。<br>
+              <strong>适用人群：</strong>高运动量+年轻患者，希望快速恢复竞技水平。<br>
+              <strong>前沿方向：</strong>①表面修饰（透明质酸/胶原涂层促进细胞粘附）；②内部支撑技术（FiberTape保护自体移植物）；③LARS+自体混合编织（兼顾即刻稳定与长期生物学整合）。
+            </div>
+          </div>
+
+          <div style="background:#E3F2FD;border:1px solid #E3F2FD;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">🔄</span><strong style="font-size:14px;">⑤ 翻修手术</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              当ACL重建失败（移植物失效、再撕裂）时需要翻修手术。翻修手术的移植物选择更复杂，需考虑：<br><br>
+              • <strong>移植物类型</strong>：通常选择异体肌腱或LARS（避免再次取腱的并发症）<br>
+              • <strong>骨隧道处理</strong>：可能需要骨移植填充原有隧道<br>
+              • <strong>康复方案</strong>：翻修手术的康复时间通常延长1-2个月<br>
+              • <strong>成功率</strong>：翻修手术成功率约80-90%，低于初次手术（90-95%）
+            </div>
+          </div>
+
+          <div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:10px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-size:16px;">⚖️</span><strong style="font-size:14px;">移植物强度 ≠ 临床成功</strong></div>
+            <div style="font-size:12px;color:#000;line-height:1.6;">
+              <strong>为什么最强的移植物不一定效果最好？</strong><br><br>
+              <strong>① 固定强度是早期瓶颈：</strong>无论移植物多强，术后早期的固定装置（界面螺钉、悬吊襻）仅能承受400-800N。这意味着在血管化完成前，所有移植物的实际承载能力被"锁"在这个范围内。<br><br>
+              <strong>② 韧带化过程决定长期强度：</strong>移植物需要经历坏死→血管再通→胶原重塑→成熟塑形四个阶段。在此过程中，移植物的力学强度会先下降再逐步恢复。骨-骨愈合（BTB）约6周完成，而软组织-骨愈合（HT、QT）需要更长时间。<br><br>
+              <strong>③ 临床成功的真正决定因素：</strong>骨隧道位置的精确性、固定质量、患者是否严格遵守康复方案，以及年龄、活动水平和骨骼质量。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📊 各阶段目标速览</h2>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>核心目标</th>
+              <th>屈膝目标</th>
+              <th>负重</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0-2周</strong></td><td>消肿止痛、激活股四头肌</td><td>被动 90°</td><td>不负重→足尖点地</td></tr>
+            <tr><td><strong>2-4周</strong></td><td>恢复伸膝、基础肌力</td><td>主动 90° 被动 100-110°</td><td>腋拐支撑下部分负重</td></tr>
+            <tr><td><strong>4-6周</strong></td><td>正常步态、闭链训练</td><td>主动 110° 被动 125°</td><td>完全负重（可脱拐）</td></tr>
+            <tr><td><strong>6-8周</strong></td><td>力量耐力重建</td><td>主动 120° 被动 130°</td><td>全负重</td></tr>
+            <tr><td><strong>8-12周</strong></td><td>力量提升、平衡训练</td><td>全范围</td><td>全负重</td></tr>
+            <tr><td><strong>12周+</strong></td><td>回归运动准备</td><td>全范围</td><td>全负重</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="key-box">
+        <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);">✅ 训练执行原则</div>
+        <div class="key-box-body">
+          <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>训练中疼痛控制在VAS 3分以下，肿痛加重则减量</span></div>
+          <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>动作准确比次数更重要，注意股四头肌迟滞</span></div>
+          <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>双侧训练利用交叉教育效应，减缓患侧肌力丢失</span></div>
+          <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>周期性进阶：每个训练阶段持续1-2周，达标后方可进入下一阶段</span></div>
+          <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>注意训练负荷与恢复的平衡，避免连续高强度训练</span></div>
+        </div>
+      </div>
+      <div class="key-box">
+        <div class="key-box-header" style="background:linear-gradient(135deg, #EF4444 0%, #FCA5A5 100%);">🚫 禁忌</div>
+        <div class="key-box-body">
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>0-8周严格禁止开链伸膝；8周后在专业指导下可引入轻量开链训练（终末10°控制发力）</span></div>
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>避免转动 / 急停 / 跳跃</span></div>
+        </div>
+      </div>
+
+      <div class="key-box">
+        <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">📌 移植物类型关键差异</div>
+        <div class="key-box-body" style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:#fce4ec;border:1px solid #fce4ec;border-radius:10px;padding:12px 14px;">
+            <strong style="color:#EC4899;font-size:14px;">🩹 自体腘绳肌</strong>
+            <div style="color:#000;font-size:13px;margin-top:4px;line-height:1.6;">最强自体移植物（极限负荷4140N），但存在<strong style="color:#EC4899;">力学悖论</strong>——临床失败率在年轻高活动量患者中反而高于BTB（2977N），因固定强度限制和软组织-骨愈合较慢</div>
+          </div>
+          <div style="background:#fff3e0;border:1px solid #fff3e0;border-radius:10px;padding:12px 14px;">
+            <strong style="color:#f59e0b;font-size:14px;">🦴 自体骨-髌腱-骨</strong>
+            <div style="color:#000;font-size:13px;margin-top:4px;line-height:1.6;">注意膝前痛和跪姿不适；伸膝装置受影响更大，<strong style="color:#f59e0b;">伸膝训练需更谨慎</strong>。骨-骨愈合最快，是唯一拥有>20年循证数据的移植物</div>
+          </div>
+          <div style="background:#F3E5F5;border:1px solid #CE93D8;border-radius:10px;padding:12px 14px;">
+            <strong style="color:#7B1FA2;font-size:14px;">🔬 LARS人工韧带</strong>
+            <div style="color:#000;font-size:13px;margin-top:4px;line-height:1.6;">所有移植物中最高强度（4600N），即刻稳定性最好；但<strong style="color:#7B1FA2;">非生物活性材料</strong>，缺乏真正生物学整合，长期不满意率可能>40%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="key-box" style="margin-top:16px;">
+        <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);">⚙️ 生物力学关键知识</div>
+        <div class="key-box-body" style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:#fce4ec;border-left:4px solid #FF4D6D;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#EC4899;">开链vs闭链：</strong>开链伸膝在屈膝30°-0°范围内对ACL产生较大剪切力；闭链下蹲时关节压力均匀分布，ACL受力随屈膝角度增大而减小，超过50°后剪切力最低。因此<strong style="color:#EC4899;">闭链训练更适合早期康复</strong>。</div>
+          </div>
+          <div style="background:#fff3e0;border-left:4px solid #f59e0b;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#f59e0b;">H/Q比值：</strong>腘绳肌与股四头肌力量比是ACL损伤的重要预测指标。<strong style="color:#f59e0b;">理想比值≥60%</strong>（60°/s等速测试），比值过低时腘绳肌无法有效拮抗胫骨前移拉力。</div>
+          </div>
+          <div style="background:#fff3e0;border-left:4px solid #FFE082;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#FFE082;">髌股关节应力：</strong>下蹲时髌股关节受力可达体重的3.3倍（日常活动），深蹲时达7.8倍。ACL术后早期（0-6周）<strong style="color:#FFE082;">避免深蹲</strong>可同时保护移植物和髌股关节。</div>
+          </div>
+          <div style="background:#EDFBF4;border-left:4px solid #0ABAB5;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#10B981;">旋紧回位机制（screw-home）：</strong>伸膝终末时胫骨外旋约15°，闭链中此机制保护ACL，开链中则增加ACL应力——解释了为何术后需<strong style="color:#10B981;">避免开链终末伸膝</strong>。</div>
+          </div>
+          <div style="background:#f3e5f5;border-left:4px solid #7C4DFF;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#8B5CF6;">力闭合（force closure）：</strong>负重位下ACL不是主要稳定结构——股四头肌和腘绳肌共同收缩产生的关节压力才是膝关节稳定的主要来源。这解释了为什么<strong style="color:#8B5CF6;">肌力训练直接改善关节稳定性</strong>。</div>
+          </div>
+          <div style="background:#fce4ec;border-left:4px solid #FF4D6D;border-radius:8px;padding:10px 14px;">
+            <div style="color:#000;font-size:13px;line-height:1.6;"><strong style="color:#EC4899;">腘绳肌取腱影响：</strong>取腱后膝屈曲力矩下降10-30%（Neumann数据），需要专门的<strong style="color:#EC4899;">离心腘绳肌训练</strong>来恢复。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="key-box" style="margin-top:20px;">
+        <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+        <div class="key-box-body">
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到"啪"的响声后膝盖失去稳定感（可疑移植物失效）</span></div>
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+          <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 0-2 WEEKS ========== -->
+    <div class="phase-content" data-phase="1">
+      <div class="card">
+        <h2>🛌 第0-2周 · 急性期</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>术后0-2周是急性炎症期，核心任务是控制肿胀、保护移植物、激活股四头肌。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>注意关节源性肌肉抑制（AMI）：ACL损伤后股四头肌激活率降至正常的30-50%，每日坚持股四头肌等长收缩训练至关重要。</span></div>
+            <div class="item"><span class="dot" style="background:#3B82F6;"></span><span>支具锁定于完全伸直位（0°）下地行走，所有时间（含睡眠）均应佩戴，仅康复训练和冰敷时可摘除。支具可防止睡眠中无意识的屈膝动作。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 2-4 WEEKS ========== -->
+    <div class="phase-content" data-phase="2">
+      <div class="card">
+        <h2>🚶 第2-4周 · 早期康复期</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>移植物仍然脆弱，逐步增加活动范围，不要急于求成。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>股四头肌力量弱会直接影响屈膝能力——股四头肌越弱，腘绳肌越紧张，屈膝越受限。</span></div>
+            <div class="item"><span class="dot" style="background:#3B82F6;"></span><span>支具仍保持锁定伸直位（0°）下地行走，可在训练时解锁至0-50°进行被动/主动屈膝练习。若股四头肌控制良好（能完成直腿抬高且无迟滞），可在居家短距离行走时解锁支具。外出及睡眠时仍建议锁定伸直位。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 4-6 WEEKS ========== -->
+    <div class="phase-content" data-phase="3">
+      <div class="card">
+        <h2>🚴 第4-6周 · 中期康复</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>移植物开始血管再通，逐步可以增加训练强度。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>股四头肌此时应有明显改善的收缩能力。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>取腱处疼痛应明显减轻。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>股四头肌控制达标（直腿抬高无迟滞）后，日间居家活动可逐步摘下支具，从每次15-30分钟开始逐步延长。外出远距离行走及上下楼梯时建议佩戴（锁定0°）。夜间可摘除支具。一般在第4-6周可取消日间支具依赖，根据肌力恢复情况逐步过渡。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 6-8 WEEKS ========== -->
+    <div class="phase-content" data-phase="4">
+      <div class="card">
+        <h2>🏋️ 第6-8周 · 力量重建期</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>腘绳肌取腱处瘢痕基本成熟，疼痛明显减轻。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>可逐步增加训练阻力。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>移植物仍在塑形期，避免旋转负荷。</span></div>
+            <div class="item"><span class="dot" style="background:#3B82F6;"></span><span>日常活动可摘除支具，但上下楼梯、不平路面及长时间行走时建议佩戴。夜间无需佩戴。重点应转移至肌力训练和步态纠正，而非依赖支具保护。若股四头肌力量仍不足，可继续在出行时佩戴支具。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 8-12 WEEKS ========== -->
+    <div class="phase-content" data-phase="5">
+      <div class="card">
+        <h2>🏃 第8-12周 · 功能训练期</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>移植物力学强度逐步恢复，可以开始进行轴向负荷训练。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>仍需避免旋转、急停等动作。</span></div>
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>请循序渐进增加训练量。</span></div>
+            <div class="item"><span class="dot" style="background:#3B82F6;"></span><span>支具可全天摘除。AAOS指南指出："没有中等证据支持ACL重建术后常规使用功能性支具"。下楼梯、不平路面或外出时，如肌力尚未完全恢复，可佩戴软性护膝提供本体感觉参考。高强度训练（如折返跑、变向训练）前应咨询医师。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ========== PHASE 12+ WEEKS ========== -->
+    <div class="phase-content" data-phase="6">
+      <div class="card">
+        <h2>⚡ 第12周以上 · 回归运动准备期</h2>
+
+        <div class="key-box" style="border:1px solid #7C4DFF;border-radius:8px;overflow:hidden;margin:8px 0;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);font-weight:700;font-size:15px;">⚠️ 注意事项</div>
+          <div class="key-box-body" style="background:#fff;padding:14px 16px;font-size:14px;">
+            <div class="item"><span class="dot" style="background:#8B5CF6;"></span><span>回归运动需要满足以下条件，不可仅凭时间判断——肌力和功能评估达标后才能安全回归竞技运动。</span></div>
+            <div class="item"><span class="dot" style="background:#3B82F6;"></span><span>此阶段一般已无需佩戴支具。AAOS指南明确指出功能支具在ACL重建术后的常规使用缺乏循证支持。但回归对抗性运动（篮球、足球等）初期，部分医师仍建议使用功能性支具约1年，直至肌力和神经肌肉控制完全恢复。是否佩戴应与医师和康复师共同决策。</span></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <p>参考10部专业著作制定 · 仅供参考，不替代专业医疗建议</p>
+  <p style="margin-top:4px;">所有康复方案应优先经过你的主治医师或康复治疗师确认</p>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.phase-tab');
+  const contents = document.querySelectorAll('.phase-content');
+  const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      const phase = tab.dataset.phase;
+      document.querySelector(`.phase-content[data-phase="${phase}"]`).classList.add('active');
+    });
+  });
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('label').classList.toggle('checked', cb.checked);
+    });
+  });
+</script>
+</body>
+</html>

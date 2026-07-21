@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}登录 — RehabGuide{% endblock %}
+
+{% block content %}
+<section class="login-page">
+    <div class="login-card fade-up">
+        <div class="login-logo" aria-hidden="true">R</div>
+        <div class="login-header">
+            <h1>欢迎回来</h1>
+            <p>登录以访问你的康复指南</p>
+        </div>
+        <form method="POST" action="{{ url_for('login') }}" class="login-form">
+            <div class="field">
+                <label for="username">账号</label>
+                <input type="text" id="username" name="username" required placeholder="输入你的卡密账号" autocomplete="username">
+            </div>
+            <div class="field">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" required placeholder="输入密码" autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
+        </form>
+        <div class="login-note">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>首次登录将自动注册，账号和密码均为你的卡密</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

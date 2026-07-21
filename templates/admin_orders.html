@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}收益面板 — RehabGuide{% endblock %}
+
+{% block content %}
+<section class="page">
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-left">
+                <h1 class="page-title">📊 收益面板</h1>
+                <p class="page-subtitle">订单管理与收入概览</p>
+            </div>
+            <div class="page-header-actions">
+                <a href="/shop/admin/users" class="btn btn-outline btn-sm">用户管理</a>
+                <a href="{{ url_for('shop') }}" class="btn btn-ghost btn-sm">返回商城</a>
+            </div>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="admin-stats" style="margin-bottom:var(--sp-8);">
+            <div class="admin-stat" style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);">
+                <span class="admin-stat-value" style="color:#059669;">¥{{ "%.0f"|format(stats.total_revenue) }}</span>
+                <span class="admin-stat-label">总收益</span>
+            </div>
+            <div class="admin-stat" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);">
+                <span class="admin-stat-value" style="color:#2563EB;">{{ stats.paid_count }}</span>
+                <span class="admin-stat-label">已支付订单</span>
+            </div>
+            <div class="admin-stat" style="background:linear-gradient(135deg,#F3E8FF,#E9D5FF);">
+                <span class="admin-stat-value" style="color:#7C3AED;">{{ stats.paid_users }}</span>
+                <span class="admin-stat-label">已购买用户</span>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-value">{{ stats.total_users }}</span>
+                <span class="admin-stat-label">注册用户</span>
+            </div>
+        </div>
+
+        <!-- Per-product breakdown -->
+        {% if stats.product_stats %}
+        <h3 style="margin-bottom:var(--sp-4);">📦 产品销售明细</h3>
+        <div class="guide-grid" style="margin-bottom:var(--sp-8);">
+            {% for pname, ps in stats.product_stats.items() %}
+            <article class="guide-card">
+                <div class="guide-card-header">
+                    <div class="guide-card-info">
+                        <h3>{{ pname }}</h3>
+                    </div>
+                    <span class="status-badge status-badge--active">{{ ps.count }} 份</span>
+                </div>
+                <div style="padding:var(--sp-4) var(--sp-6);text-align:right;">
+                    <span style="font-size:1.5rem;font-weight:800;color:var(--gray-900);">¥{{ "%.0f"|format(ps.revenue) }}</span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Orders table -->
+        <h3 style="margin-bottom:var(--sp-4);">📋 订单列表</h3>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>用户</th>
+                        <th>产品</th>
+                        <th>金额</th>
+                        <th>状态</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for oid, order in orders.items() if order.status == "paid" %}
+                    <tr>
+                        <td><code class="user-code" style="font-size:0.7rem;">{{ oid[-12:] }}</code></td>
+                        <td><strong>{{ order.username }}</strong></td>
+                        <td>{{ order.product_name }}</td>
+                        <td style="font-weight:700;">¥{{ order.amount }}</td>
+                        <td>
+                            <span class="status-badge status-badge--active">已支付</span>
+                        </td>
+                        <td style="font-size:0.75rem;color:var(--gray-500);">{{ order.created_display }}</td>
+                        <td>
+                            <span style="font-size:0.75rem;color:var(--gray-400);">
+                                {% if order.paid_at %}{{ order.paid_display }}{% else %}—{% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="7" style="text-align:center;padding:var(--sp-12);color:var(--gray-400);">暂无订单</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

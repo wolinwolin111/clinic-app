@@ -1,0 +1,972 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACL重建+半月板术后联合康复指南 - 参考7部专业著作</title>
+<style>
+  :root {
+    --primary: #81D8CF;
+    --primary-dark: #5ABFB5;
+    --primary-light: #E0F7F4;
+    --accent: #ff6b35;
+    --warn: #f57c00;
+    --danger: #d32f2f;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --text-muted: #636e72;
+    --border: #e0e0e0;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #5ABFB5 0%, #81D8CF 50%, #B2EBE5 100%);
+    color: #fff;
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+  .header p { font-size: 15px; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 12px;
+    color: #fff;
+  }
+  .header .sub-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .header .sub-badges .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #fff;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  /* Surgery type selector */
+  .selector {
+    display: flex;
+    gap: 12px;
+    padding: 20px 0 8px;
+    overflow-x: auto;
+  }
+  .selector-btn {
+    flex: 1;
+    min-width: 160px;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .selector-btn:hover { border-color: var(--primary); }
+  .selector-btn.active {
+    border-color: var(--primary-dark);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .selector-btn .sub { font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+  .selector-btn.active .sub { color: var(--primary-dark); }
+
+  /* Phase Tabs */
+  .phase-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 20px 0 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    scrollbar-width: none;
+  }
+  .phase-tabs::-webkit-scrollbar { display: none; }
+  .phase-tab {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+  }
+  .phase-tab:hover { background: var(--primary-light); color: var(--primary); }
+  .phase-tab.active {
+    background: var(--card);
+    color: var(--primary-dark);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  }
+  .phase-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+  }
+
+  .main { padding: 0 0 60px; }
+
+  .surgery-content { display: none; }
+  .surgery-content.active { display: block; }
+
+  .phase-group { display: none; }
+  .phase-group.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .card h3 {
+    font-size: 16px;
+    color: var(--text);
+    margin: 20px 0 10px;
+  }
+  .card h3:first-of-type { margin-top: 0; }
+
+  .info-box {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 14px;
+    border-left: 4px solid;
+  }
+  .info-box.info {
+    background: #e3f2fd;
+    border-color: #1976d2;
+    color: #1565c0;
+  }
+  .info-box.warn {
+    background: #fff3e0;
+    border-color: var(--warn);
+    color: #e65100;
+  }
+  .info-box.danger {
+    background: #fce4ec;
+    border-color: var(--danger);
+    color: #c62828;
+  }
+  .info-box.success {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: #1b5e20;
+  }
+
+  .key-box-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: white;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .key-box {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+    border: 1px solid #a7f3d0;
+    border-radius: 10px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .key-box-body {
+    padding: 12px 16px 14px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .key-box-body .item {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .key-box-body .dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+  .key-box-body .dot.teal { background: var(--primary-dark); }
+  .key-box-body .dot.orange { background: #f59e0b; }
+  .key-box-body .dot.red { background: #f44336; }
+  .key-box-body .dot.mint { background: #81D8CF; }
+  .key-box-body .dot.peach { background: #FCD34D; }
+  .key-box-body .dot.lavender { background: #A78BFA; }
+  .key-box-body .dot.rose { background: #FF4D6D; }
+  .key-box-body .dot.coral { background: #FB923C; }
+  .key-box-body .dot.blue { background: #60A5FA; }
+  .key-box-body .title { font-weight: 600; }
+  .key-box-body .title.teal { color: var(--primary-dark); }
+  .key-box-body .title.orange { color: #e65100; }
+  .key-box-body .title.red { color: #c62828; }
+  .key-box-body .sub-label { color: #f59e0b; font-weight: 600; }
+  .key-box-body .sub-text { color: #000000; font-size: 12px; font-weight: 600; }
+
+  .exercise {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .exercise:last-child { border-bottom: none; }
+  .exercise-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .exercise-icon.green { background: #e8f5e9; }
+  .exercise-icon.blue { background: #e3f2fd; }
+  .exercise-icon.orange { background: #fff3e0; }
+  .exercise-icon.purple { background: #f3e5f5; }
+  .exercise-body { flex: 1; }
+  .exercise-body h4 { font-size: 15px; margin-bottom: 4px; }
+  .exercise-body p { font-size: 14px; color: var(--text-muted); }
+  .exercise-body .meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .exercise-body .meta span {
+    background: var(--bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+  }
+
+  .milestone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 14px;
+  }
+  .milestone .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .milestone .dot.green { background: #4caf50; }
+  .milestone .dot.yellow { background: #ff9800; }
+  .milestone .dot.red { background: #f44336; }
+  .milestone .dot.tiffany { background: var(--primary-dark); }
+
+  .checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+  }
+  .checklist label.checked {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+
+  .compare-table { width:100%; border-collapse: collapse; font-size:14px; margin: 12px 0; }
+  .compare-table th {
+    padding: 10px;
+    text-align: left;
+    background: var(--primary-light);
+    border-bottom: 2px solid var(--primary-dark);
+  }
+  .compare-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .diff-box {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .diff-col { flex: 1; padding: 14px; border-radius: 8px; font-size: 14px; }
+  .diff-col h4 { margin-bottom: 8px; }
+  .diff-col.left { background: #fff3e0; border-left: 4px solid var(--warn); }
+  .diff-col.right { background: var(--primary-light); border-left: 4px solid var(--primary); }
+
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px; }
+    .exercise { gap: 10px; }
+    .exercise-icon { width: 32px; height: 32px; font-size: 16px; }
+    .selector-btn { min-width: 120px; padding: 10px 12px; font-size: 13px; }
+    .diff-box { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦵 ACL重建 + 半月板术后联合康复指南</h1>
+
+  <div class="sub-badges">
+    <span class="tag">🦵 前交叉韧带重建</span>
+    <span class="tag">🧵 半月板缝合</span>
+    <span class="tag">✂️ 半月板部分切除</span>
+  </div>
+  <div class="badge">请先选择半月板手术类型 ↓</div>
+</div>
+
+<div class="container">
+
+  <!-- Surgery Type Selector -->
+  <div class="selector" id="surgerySelector">
+    <div class="selector-btn active" data-surgery="combined-repair">
+      🧵 ACL + 半月板缝合修复
+      <div class="sub">以半月板愈合为优先，严格限制负重，恢复周期最长</div>
+    </div>
+    <div class="selector-btn" data-surgery="combined-meniscectomy">
+      ✂️ ACL + 半月板部分切除
+      <div class="sub">以ACL恢复为主要考量，可早期负重，恢复周期较快</div>
+    </div>
+  </div>
+
+  <div style="background:#fff3e0;border-radius:12px;padding:14px 18px;margin-bottom:14px;border:1px solid #FFE082;font-size:13px;color:#333;line-height:1.6;">
+    <strong style="font-size:14px;">📋 使用说明</strong><br>
+    本指南仅供参考与学习，不构成医疗建议。ACL重建与半月板联合术后康复因个体差异（手术方式、撕裂类型、缝合技术、移植物类型、身体条件等）而不同，请务必在您的主治医师或康复治疗师指导下进行训练。作者不对因使用本指南而导致的任何损伤或后果承担责任。训练中出现疼痛加重或不适，请立即停止并咨询专业医师。
+  </div>
+
+  <!-- ========== COMBINED ACL + MENISCUS REPAIR ========== -->
+  <div class="surgery-content active" data-surgery="combined-repair">
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="cr0">📋 总览</button>
+      <button class="phase-tab" data-phase="cr1">🛌 0-2周</button>
+      <button class="phase-tab" data-phase="cr2">🚶 2-4周</button>
+      <button class="phase-tab" data-phase="cr3">🚴 4-6周</button>
+      <button class="phase-tab" data-phase="cr4">🏋️ 6-8周</button>
+      <button class="phase-tab" data-phase="cr5">🏃 8-12周</button>
+      <button class="phase-tab" data-phase="cr6">⚡ 12周+</button>
+    </div>
+
+    <!-- Overview -->
+    <div class="phase-group active" data-phase="cr0">
+      <div class="card">
+        <h2>🧵 ACL + 半月板缝合修复 · 联合康复总览</h2>
+        <div class="info-box danger">
+          <strong>⚠️ 核心原则：以半月板愈合为优先</strong><br>
+          当ACL重建与半月板缝合同时进行时，<strong>半月板的愈合要求（不负重、限制屈膝角度）优先于ACL的康复进度</strong>。《骨科术后康复指南》强调：半月板缝合失败不可逆，而ACL移植物在保护下可以等待。研究显示，ACL重建+半月板缝合术后，半月板愈合率可达92%（同期ACL重建患者）。
+        </div>
+
+        <h3>两套方案的冲突与平衡</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>项目</th>
+              <th>ACL单独（通常）</th>
+              <th>半月板缝合单独</th>
+              <th style="background:#fff3e0;">联合方案（取更严格者）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>0-2周负重</strong></td>
+              <td>可部分负重</td>
+              <td>❌ 严格不负重</td>
+              <td style="background:#fff3e0;"><strong>❌ 严格不负重</strong></td>
+            </tr>
+            <tr>
+              <td><strong>2-4周负重</strong></td>
+              <td>逐步部分负重</td>
+              <td>❌ 严格不负重</td>
+              <td style="background:#fff3e0;"><strong>❌ 严格不负重</strong></td>
+            </tr>
+            <tr>
+              <td><strong>4-6周负重</strong></td>
+              <td>完全负重脱拐</td>
+              <td>足尖点地→部分负重</td>
+              <td style="background:#fff3e0;"><strong>⚠️ 足尖点地→部分负重（25%）</strong></td>
+            </tr>
+            <tr>
+              <td><strong>屈膝限制</strong></td>
+              <td>主动屈膝渐进</td>
+              <td>被动≤90°（6周内）</td>
+              <td style="background:#fff3e0;"><strong>⚠️ 被动≤90°（6周内），后角缝合更严格</strong></td>
+            </tr>
+            <tr>
+              <td><strong>6周后</strong></td>
+              <td>力量训练加速</td>
+              <td>逐步增加负重</td>
+              <td style="background:#fff3e0;"><strong>以ACL进度为参考，但半月板保护优先</strong></td>
+            </tr>
+            <tr>
+              <td><strong>完全负重</strong></td>
+              <td>术后4周</td>
+              <td>术后6-8周</td>
+              <td style="background:#fff3e0;"><strong>术后6-8周（取较晚者）</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box warn">
+          <strong>💡 这意味着什么？</strong><br>
+          联合手术（ACL+半月板缝合）的康复进度会<strong>明显慢于单独的ACL重建</strong>。《AAOS骨科术后康复》同样强调：术后6周的不负重期是正常的，不要因为ACL的恢复进度而急着负重——<strong>给半月板足够的时间愈合是长期成功的关键</strong>。<br><br>
+          <strong>《解剖列车》筋膜视角：</strong>联合手术同时破坏了ACL和半月板所在的深前线筋膜链。术后康复不仅要关注局部结构，还应通过内收肌、腰大肌、胫骨后肌和膈肌的训练来恢复筋膜链的连续性。<br><br>
+          <strong>《肌肉骨骼系統肌動學》：</strong>负重位下ACL不是主要稳定结构，股四头肌和腘绳肌的共同收缩产生的关节压力才是稳定性的主要来源。在6周不负重期间，等长收缩训练对维持神经肌肉连接和力闭合机制至关重要。
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #0ABAB5 0%, #5EEAD4 100%);">⏰ 早期康复窗口</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot teal"></span>
+              <div><span class="title teal">尽早启动基础训练：</span><span class="sub-text">《临床康复医学》案例提示：术后6天即开始康复的患者，关节活动度恢复时间显著短于延迟康复者。在严格半月板保护的前提下，应尽早（术后1周内）开始基础训练。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot orange"></span>
+              <div><span class="title orange">保护前提下的早期活动：</span><span class="sub-text">在严格不负重和限制屈膝≤90°的前提下，术后第1天即可开始股四头肌等长收缩、踝泵等基础训练，以对抗关节源性肌肉抑制（AMI）和预防肌肉萎缩。</span></div>
+            </div>
+          </div>
+        </div>
+
+        <h3>各阶段目标速览</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>阶段</th><th>核心目标</th><th>屈膝</th><th>负重</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0-2周</strong></td><td>保护愈合、消肿、股四头肌激活</td><td>被动 ≤ 90°</td><td>❌ 严格不负重</td></tr>
+            <tr><td><strong>2-4周</strong></td><td>维持活动度、肌力基础</td><td>被动 ≤ 90°</td><td>❌ 严格不负重</td></tr>
+            <tr><td><strong>4-6周</strong></td><td>逐步增加角度和负重</td><td>主动 ≤ 90° 被动 110°</td><td>⚠️ 足尖→部分负重(25-50%)</td></tr>
+            <tr><td><strong>6-8周</strong></td><td>过渡到正常行走</td><td>主动 110° 被动 120°</td><td>✅ 部分→全负重</td></tr>
+            <tr><td><strong>8-12周</strong></td><td>力量重建</td><td>全范围（避深蹲≥90°）</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>12周+</strong></td><td>功能训练+回归运动准备</td><td>全范围</td><td>✅ 全负重</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="key-box" style="margin-top:10px;">
+  <div class="key-box-header" style="background:linear-gradient(135deg, #0ABAB5 0%, #5EEAD4 100%);">✅ 训练执行原则</div>
+  <div class="key-box-body">
+    <div class="item">
+      <span class="dot teal"></span>
+      <div><span class="title teal">保护缝合处第一：</span><span class="sub-text">ACL移植物和半月板缝合处均需保护。半月板缝合限制负重和屈膝角度，ACL移植物限制开链伸膝和早期过度负荷。<strong>两者冲突时，优先遵循更严格的限制。</strong></span></div>
+    </div>
+    <div class="item">
+      <span class="dot orange"></span>
+      <div><span class="title orange">控制屈膝幅度：</span><span class="sub-text">深屈膝（>90°）对半月板后角压力大，同时对ACL移植物产生较大牵拉。术后6周内避免主动屈膝超过90°。</span></div>
+    </div>
+    <div class="item">
+      <span class="dot" style="background:#3B82F6;"></span>
+      <div><span style="font-weight:700;color:#3B82F6;">《骨科术后康复指南》肿胀管理：</span><span class="sub-text">术后肿胀是关节源性肌肉抑制（AMI）的重要诱因，肿胀每增加1%，股四头肌激活率下降约1.5%。训练后如肿胀加重，应减少训练量并调整训练类型。</span></div>
+    </div>
+    <div class="item">
+      <span class="dot" style="background:#8B5CF6;"></span>
+      <div><span style="font-weight:700;color:#8B5CF6;">《基础肌动学》：</span><span class="sub-text">ACL和半月板联合损伤后，膝关节生物力学发生显著改变。重建和修复术后，循序渐进的力学刺激有利于胶原纤维沿应力线排列。</span></div>
+    </div>
+    <div class="item">
+      <span class="dot" style="background:#10B981;"></span>
+      <div><span style="font-weight:700;color:#10B981;">《临床康复医学》：</span><span class="sub-text">股四头肌等长收缩每日目标400-800次，是维持肌量的最重要手段；双侧同时训练可借助交叉教育效应减缓患侧肌力丢失。</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="key-box" style="margin-top:20px;">
+  <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+  <div class="key-box-body">
+    <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+    <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退（可疑再撕裂或移植物失效）</span></div>
+    <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到"啪"的响声后膝关节失去稳定感</span></div>
+    <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+    <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+  </div>
+</div>
+    </div>
+
+    <!-- CR Phase 0-2 weeks -->
+    <div class="phase-group" data-phase="cr1">
+      <div class="card">
+        <h2>🛌 第0-2周 · 严格保护期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 患肢抬高（高于心脏水平）</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 双腋拐：严格不负重</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✓ 佩戴支具锁定于完全伸直位行走</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 严禁患肢承重</span></div></div>
+            <div class="item"><span class="dot coral"></span><div><span class="sub-text">✗ 严禁主动屈膝</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✗ 严禁旋转、急停</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CR Phase 2-4 weeks -->
+    <div class="phase-group" data-phase="cr2">
+      <div class="card">
+        <h2>🚶 第2-4周 · 持续保护期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 继续严格不负重</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 支具锁定于0°行走，训练时可调至0-90°</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 睡眠时支具应锁定在伸直位，防止无意屈膝</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✓ 取腱处疼痛：训练前热敷</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 禁止主动屈膝</span></div></div>
+            <div class="item"><span class="dot coral"></span><div><span class="sub-text">✗ 禁止患肢承重</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CR Phase 4-6 weeks -->
+    <div class="phase-group" data-phase="cr3">
+      <div class="card">
+        <h2>🚴 第4-6周 · 过渡期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 负重进阶需根据医生指导和身体反馈</span></div></div>
+
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 支具调至0-90°行走，睡眠时可解锁至0-60°</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✗ 屈膝仍不超过 110°</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免长时间站立</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CR Phase 6-8 weeks -->
+    <div class="phase-group" data-phase="cr4">
+      <div class="card">
+        <h2>🏋️ 第6-8周 · 脱拐过渡期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 逐步脱拐：双拐→单拐→脱拐</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 步态训练：对镜走，注意伸膝和足跟着地</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 日间居家可摘除支具，外出及上下楼梯建议佩戴</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✗ 避免下蹲超过45°</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免旋转和跳跃</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CR Phase 8-12 weeks -->
+    <div class="phase-group" data-phase="cr5">
+      <div class="card">
+        <h2>🏃 第8-12周 · 力量重建期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 逐步恢复步行距离</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 上下楼梯：初期"好上坏下"</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 支具可全天摘除，不平路面外出建议软性护膝</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✗ 避免深蹲（全蹲）</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免跑步、跳跃、旋转</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CR Phase 12+ weeks -->
+    <div class="phase-group" data-phase="cr6">
+      <div class="card">
+        <h2>⚡ 第12周以上 · 功能训练期</h2>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COMBINED ACL + MENISCECTOMY ========== -->
+  <div class="surgery-content" data-surgery="combined-meniscectomy">
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="cm0">📋 总览</button>
+      <button class="phase-tab" data-phase="cm1">🛌 0-2周</button>
+      <button class="phase-tab" data-phase="cm2">🚶 2-4周</button>
+      <button class="phase-tab" data-phase="cm3">🚴 4-6周</button>
+      <button class="phase-tab" data-phase="cm4">🏋️ 6-8周</button>
+      <button class="phase-tab" data-phase="cm5">🏃 8-12周</button>
+      <button class="phase-tab" data-phase="cm6">⚡ 12周+</button>
+    </div>
+
+    <!-- Overview -->
+    <div class="phase-group active" data-phase="cm0">
+      <div class="card">
+        <h2>✂️ ACL + 半月板部分切除 · 联合康复总览</h2>
+        <div class="info-box success">
+          <strong>好消息：</strong>半月板部分切除后没有"缝合处需要愈合"的限制。《AAOS骨科术后康复》指出：术后可早期负重，康复方案以ACL重建的要求为主，恢复进程更接近单纯的ACL重建。<br><br>
+          <strong>《骨科术后康复》提示：</strong>尽管切除术后可早期负重，但缺损的半月板失去了缓冲功能——屈膝90°时约90%载荷通过半月板传递（《基础肌动学》数据），切除后这部分载荷直接作用于关节软骨，肌力训练是终身的关节保护策略。
+        </div>
+
+        <div class="diff-box">
+          <div class="diff-col left">
+            <h4>⚡ 优势</h4>
+            <p>• 可早期负重（可耐受）</p>
+            <p>• 不受屈膝角度严格限制</p>
+            <p>• 恢复时间与单纯ACL相似</p>
+            <p>• 术后可立即部分负重</p>
+          </div>
+          <div class="diff-col right">
+            <h4>⚠️ 注意（《骨科术后康复指南》）</h4>
+            <p>• 切除的半月板不会再生</p>
+            <p>• 膝关节长期缓冲能力下降</p>
+            <p>• 15-20年后OA风险增加</p>
+            <p>• 需终身关注肌力保护关节</p>
+            <p>• 避免高冲击运动</p>
+          </div>
+        </div>
+
+        <h3>各阶段目标速览</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>阶段</th><th>核心目标</th><th>屈膝</th><th>负重</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0-2周</strong></td><td>消肿止痛、激活肌力、可耐受负重</td><td>被动 90°</td><td>✅ 可耐受负重（腋拐辅助）</td></tr>
+            <tr><td><strong>2-4周</strong></td><td>恢复活动度、逐步脱拐</td><td>主动 90° 被动 110°</td><td>✅ 逐步完全负重</td></tr>
+            <tr><td><strong>4-6周</strong></td><td>正常行走、闭链训练</td><td>主动 110° 被动 125°</td><td>✅ 全负重（脱拐）</td></tr>
+            <tr><td><strong>6-8周</strong></td><td>力量重建</td><td>全范围</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>8-12周</strong></td><td>功能训练</td><td>全范围</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>12周+</strong></td><td>回归运动准备（低冲击优先）</td><td>全范围</td><td>✅ 全负重</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box warn">
+          <strong>💡 与单纯ACL重建的主要区别：</strong><br>
+          半月板部分切除后关节缓冲能力下降，回归运动后应<strong>优先选择低冲击运动</strong>（游泳、骑行、椭圆机），谨慎参与高旋转运动（篮球、足球、羽毛球）。<strong>肌力训练是终身的关节保护手段。</strong>
+        </div>
+
+        <div class="key-box" style="margin-top:10px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #0ABAB5 0%, #5EEAD4 100%);">✅ 训练执行原则</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span style="background:#81D8CF;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="font-weight:700;color:#81D8CF;">早期活动、肌力是保护：</span><span class="sub-text">半月板切除后无缝合限制，可早期全负重和全范围活动。但ACL移植物仍需保护，术后6周内遵循ACL限制为主的原则。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#3B82F6;"></span>
+              <div><span style="font-weight:700;color:#3B82F6;">《骨科术后康复指南》肿胀管理：</span><span class="sub-text">术后肿胀是关节源性肌肉抑制（AMI）的重要诱因，肿胀每增加1%，股四头肌激活率下降约1.5%。训练后如肿胀加重，应减少训练量并调整训练类型。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#8B5CF6;"></span>
+              <div><span style="font-weight:700;color:#8B5CF6;">《基础肌动学》：</span><span class="sub-text">半月板切除后膝关节缓冲能力下降，ACL重建后需要保护移植物。肌力训练是代偿半月板功能和保护移植物的核心手段。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#10B981;"></span>
+              <div><span style="font-weight:700;color:#10B981;">控制体重：</span><span class="sub-text">每减轻1kg体重，膝关节负荷减少4kg。联合手术后关节保护尤为重要。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span style="font-weight:700;color:#EF4444;">永远记住：</span><span class="sub-text">ACL+半月板联合手术后，膝关节退变风险高于单一手术。肌力训练和体重管理是终身的关节保护手段。</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到"啪"的响声后膝关节失去稳定感（可疑移植物失效）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 0-2 weeks -->
+    <div class="phase-group" data-phase="cm1">
+      <div class="card">
+        <h2>🛌 第0-2周 · 急性期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 抬高患肢</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 双腋拐，可耐受负重</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 取腱处疼痛：训练前热敷</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✓ 通常无需支具，如感不稳定可佩戴软性护膝</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免长时间站立</span></div></div>
+            <div class="item"><span class="dot coral"></span><div><span class="sub-text">✗ 避免剧烈活动</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 2-4 weeks -->
+    <div class="phase-group" data-phase="cm2">
+      <div class="card">
+        <h2>🚶 第2-4周 · 早期康复</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 逐步脱拐行走</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 步态训练：对镜走</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✗ 避免长时间行走（>30分钟）</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✗ 避免开链伸膝（最后30°负重伸膝）</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 4-6 weeks -->
+    <div class="phase-group" data-phase="cm3">
+      <div class="card">
+        <h2>🚴 第4-6周 · 肌力重建期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 脱拐行走，保持正常步态</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 逐步增加行走距离</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✗ 避免跑步、跳跃</span></div></div>
+            <div class="item"><span class="dot blue"></span><div><span class="sub-text">✗ 避免旋转动作</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 6-8 weeks -->
+    <div class="phase-group" data-phase="cm4">
+      <div class="card">
+        <h2>🏋️ 第6-8周 · 力量训练期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 上下楼梯训练</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✗ 避免高冲击活动</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 8-12 weeks -->
+    <div class="phase-group" data-phase="cm5">
+      <div class="card">
+        <h2>🏃 第8-12周 · 功能训练期</h2>
+
+        <div class="key-box" style="margin-top:16px;">
+            <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+            <div class="key-box-body">
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 训练后及时放松肌肉</span></div></div>
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 继续肌力训练，每周3-4次</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 低冲击有氧运动（游泳、骑行）</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 循序渐进增加运动量和强度</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免急停、旋转等高危动作</span></div></div>
+            <div class="item"><span class="dot coral"></span><div><span class="sub-text">✗ 避免深蹲超过90°</span></div></div>
+          </div>
+        </div>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+
+    <!-- CM Phase 12+ weeks -->
+    <div class="phase-group" data-phase="cm6">
+      <div class="card">
+        <h2>⚡ 第12周以上 · 长期管理</h2>
+
+      <div style="background:linear-gradient(135deg, #FFF3E0 0%, #FFCCBC 50%, #FFAB91 100%);border:1px solid #FFCC91;border-radius:16px;padding:24px 20px;margin:24px 0 8px 0;text-align:center;box-shadow:0 3px 12px rgba(255,152,0,0.12);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.35);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(255,255,255,0.25);border-radius:50%;"></div>
+        <p style="font-size:18px;font-weight:800;color:#5D4037;margin:0 0 8px 0;">🔒 解锁完整版本</p>
+        <p style="font-size:14px;color:#6D4C41;margin:0;line-height:1.6;">查看本阶段<strong>完整训练方案</strong>与<strong>进阶标准</strong></p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>参考10部专业著作制定 · 仅供参考，不替代专业医疗建议</p>
+  <p style="margin-top:4px;">所有康复方案应在您的主治医师或康复治疗师指导下进行</p>
+  <p style="margin-top:4px;font-size:12px;">© 2025 ACL+半月板联合术后康复指南 v2.0</p>
+</div>
+
+<script>
+  // Surgery type selector
+  const surgeryBtns = document.querySelectorAll('#surgerySelector .selector-btn');
+  const surgeryContents = document.querySelectorAll('.surgery-content');
+
+  surgeryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      surgeryBtns.forEach(b => b.classList.remove('active'));
+      surgeryContents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`.surgery-content[data-surgery="${btn.dataset.surgery}"]`).classList.add('active');
+    });
+  });
+
+  // Phase tabs within each surgery section
+  document.querySelectorAll('.surgery-content').forEach(section => {
+    const tabs = section.querySelectorAll('.phase-tab');
+    const groups = section.querySelectorAll('.phase-group');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        groups.forEach(g => g.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(`.phase-group[data-phase="${tab.dataset.phase}"]`).classList.add('active');
+      });
+    });
+  });
+
+  // Checklists
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('label').classList.toggle('checked', cb.checked);
+    });
+  });
+</script>
+</body>
+</html>

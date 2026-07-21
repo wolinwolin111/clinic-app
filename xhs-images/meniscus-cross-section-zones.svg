@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" font-family="'Segoe UI', Arial, Helvetica, sans-serif">
+  <defs>
+    <clipPath id="meniscusClip">
+      <path d="M 120,260 L 550,260 L 550,165 
+               Q 430,168 340,205 
+               Q 230,230 120,260 Z"/>
+    </clipPath>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="700" height="340" fill="#fafbfc" rx="10"/>
+
+  <text x="350" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">半月板横截面血供分区与愈合潜力</text>
+
+  <!-- Colored zones clipped to meniscus shape -->
+  <g clip-path="url(#meniscusClip)">
+    <rect x="110" y="130" width="160" height="150" fill="#f0f1f3"/>
+    <rect x="270" y="130" width="145" height="150" fill="#fef5e7"/>
+    <rect x="415" y="130" width="160" height="150" fill="#fdedeb"/>
+  </g>
+
+  <!-- Zone boundary lines -->
+  <line x1="270" y1="130" x2="263" y2="270" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="415" y1="130" x2="407" y2="270" stroke="#1a1a2e" stroke-width="2"/>
+
+  <!-- Full meniscus outline -->
+  <path d="M 120,260 L 550,260 L 550,165 
+           Q 430,168 340,205 
+           Q 230,230 120,260 Z" 
+        fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Zone number badges -->
+  <circle cx="200" cy="225" r="12" fill="#7f8c8d" opacity="0.7"/>
+  <text x="200" y="230" text-anchor="middle" font-size="13" font-weight="bold" fill="white">1</text>
+
+  <circle cx="320" cy="228" r="12" fill="#e67e22" opacity="0.8"/>
+  <text x="320" y="233" text-anchor="middle" font-size="13" font-weight="bold" fill="white">2</text>
+
+  <circle cx="480" cy="215" r="12" fill="#e74c3c" opacity="0.8"/>
+  <text x="480" y="220" text-anchor="middle" font-size="13" font-weight="bold" fill="white">3</text>
+
+  <!-- Side annotations -->
+  <rect x="580" y="198" width="100" height="28" rx="5" fill="#fff0f0" stroke="#e74c3c" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="630" y="216" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">关节囊侧</text>
+
+  <rect x="20" y="198" width="105" height="28" rx="5" fill="#f5f6fa" stroke="#bbb" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="72" y="216" text-anchor="middle" font-size="12" font-weight="bold" fill="#555">游离侧</text>
+
+  <!-- Description cards -->
+  <rect x="65" y="50" width="165" height="95" rx="6" fill="white" stroke="#dfe6e9" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="65" y="50" width="165" height="28" rx="6" fill="#f0f1f3"/>
+  <rect x="65" y="66" width="165" height="12" fill="#f0f1f3"/>
+  <text x="80" y="68" font-size="12" font-weight="bold" fill="#555">① 白区 (White-White)</text>
+  <text x="80" y="90" font-size="10" fill="#888">位置：内 1/3 · 游离缘侧</text>
+  <text x="80" y="105" font-size="10" fill="#888">血供：无（依靠滑液扩散）</text>
+  <line x1="75" y1="112" x2="220" y2="112" stroke="#eee" stroke-width="1"/>
+  <text x="80" y="130" font-size="11" font-weight="bold" fill="#e74c3c">愈合潜力低 · 缝合后愈合困难</text>
+
+  <rect x="260" y="50" width="175" height="95" rx="6" fill="white" stroke="#f0d5b0" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="260" y="50" width="175" height="28" rx="6" fill="#fef5e7"/>
+  <rect x="260" y="66" width="175" height="12" fill="#fef5e7"/>
+  <text x="275" y="68" font-size="12" font-weight="bold" fill="#d35400">② 红-白区 (Red-White)</text>
+  <text x="275" y="90" font-size="10" fill="#e67e22">位置：中 1/3 · 过渡区域</text>
+  <text x="275" y="105" font-size="10" fill="#e67e22">血供：有限（外周部分有血供）</text>
+  <line x1="270" y1="112" x2="425" y2="112" stroke="#f5dbb6" stroke-width="1"/>
+  <text x="275" y="130" font-size="11" font-weight="bold" fill="#e67e22">愈合潜力中等 · 有愈合可能</text>
+
+  <rect x="465" y="50" width="165" height="95" rx="6" fill="white" stroke="#f5c6c6" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="465" y="50" width="165" height="28" rx="6" fill="#fdedeb"/>
+  <rect x="465" y="66" width="165" height="12" fill="#fdedeb"/>
+  <text x="480" y="68" font-size="12" font-weight="bold" fill="#c0392b">③ 红区 (Red-Red)</text>
+  <text x="480" y="90" font-size="10" fill="#e74c3c">位置：外 1/3 · 关节囊侧</text>
+  <text x="480" y="105" font-size="10" fill="#e74c3c">血供：丰富（占外周 10–30%）</text>
+  <line x1="475" y1="112" x2="620" y2="112" stroke="#f5c6c6" stroke-width="1"/>
+  <text x="480" y="130" font-size="11" font-weight="bold" fill="#e74c3c">愈合潜力高 · 愈合能力最佳</text>
+
+  <!-- Connecting lines -->
+  <line x1="190" y1="145" x2="200" y2="222" stroke="#bbb" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="347" y1="145" x2="320" y2="225" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="547" y1="145" x2="480" y2="212" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Gradient bar -->
+  <g transform="translate(150, 280)">
+    <rect x="0" y="0" width="400" height="6" rx="3" fill="url(#gradientBar)"/>
+    <defs>
+      <linearGradient id="gradientBar" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%" stop-color="#e74c3c" stop-opacity="0.6"/>
+        <stop offset="35%" stop-color="#e67e22" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#bdc3c7" stop-opacity="0.35"/>
+      </linearGradient>
+    </defs>
+    <text x="12" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">血供丰富</text>
+    <text x="200" y="24" text-anchor="middle" font-size="10" fill="#999">血供递减 ⟶</text>
+    <text x="388" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#777">无血供</text>
+  </g>
+
+  <!-- Footer -->
+  <rect x="50" y="310" width="600" height="26" rx="5" fill="#fef9e7" stroke="#f9e79f" stroke-width="1"/>
+  <text x="350" y="327" text-anchor="middle" font-size="10" fill="#7d6608">缝合修复效果取决于撕裂所在的血管区：③ 红区愈合最佳 → ② 红-白区有愈合可能 → ① 白区愈合困难</text>
+</svg>

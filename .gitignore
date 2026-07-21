@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/
+*.py
+!app.py
+!config.py
+!payments/*.py

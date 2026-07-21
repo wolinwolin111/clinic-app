@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RehabGuide{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shop/static/css/style.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <a href="#main" class="skip-link">跳转到主要内容</a>
+
+    <header class="header" role="banner">
+        <div class="container header-inner">
+            <a href="/shop/" class="logo" aria-label="RehabGuide 首页">
+                <span class="logo-mark" aria-hidden="true">R</span>
+                <span>RehabGuide</span>
+            </a>
+
+            <nav class="nav" role="navigation" aria-label="主导航">
+                <a href="/shop/" class="nav-link">首页</a>
+                <a href="/shop/shop" class="nav-link">我的指南</a>
+            </nav>
+
+            <div class="header-actions">
+                {% if session.get('user') %}
+                    {% if session.get('is_admin') %}
+                        <a href="/shop/admin/orders" class="btn btn-ghost btn-sm">管理</a>
+                    {% endif %}
+                    <span class="user-pill">
+                        <span class="user-avatar" aria-hidden="true">{{ session.user[0]|upper }}</span>
+                        {{ session.user }}
+                    </span>
+                    <a href="/shop/logout" class="btn btn-ghost btn-sm">退出</a>
+                {% else %}
+                    <a href="/shop/register" class="btn btn-ghost btn-sm">注册</a>
+                    <a href="/shop/login" class="btn btn-primary btn-sm">登录</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container" role="alert">
+                {% for cat, msg in messages %}
+                    <div class="flash flash-{{ cat }}">{{ msg }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <main id="main" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <div class="footer-brand">
+                        <span class="logo-mark" aria-hidden="true">R</span>
+                        <span>RehabGuide</span>
+                    </div>
+                    <p class="footer-desc">专业运动损伤术后训练方案平台。基于循证医学，覆盖从基础恢复到回归运动的完整周期。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">训练方案</a></li>
+                        <li><a href="/shop/shop">我的指南</a></li>
+                        <li><a href="/shop/login">登录</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="copyWechat();return false;">联系方式</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 RehabGuide · 本内容仅供训练参考，不构成医疗建议，请在医师及康复师指导下使用</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function copyWechat() {
+        var wx = 'rehab_guide';
+        navigator.clipboard.writeText(wx).then(function() {
+            alert('微信号已复制到剪贴板：' + wx + '\n\n请添加微信联系。');
+        }).catch(function() {
+            alert('请添加微信号：' + wx);
+        });
+    }
+    </script>
+</body>
+</html>

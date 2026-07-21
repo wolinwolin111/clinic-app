@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}用户管理 — RehabGuide{% endblock %}
+
+{% block content %}
+<section class="page">
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-left">
+                <h1 class="page-title">用户管理</h1>
+                <p class="page-subtitle">管理用户账号与购买权限</p>
+            </div>
+            <div class="page-header-actions">
+                <button class="btn btn-primary btn-sm" onclick="showAddUser()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    添加用户
+                </button>
+                <a href="{{ url_for('shop') }}" class="btn btn-outline btn-sm">返回商城</a>
+            </div>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-stat">
+                <span class="admin-stat-value">{{ users|length }}</span>
+                <span class="admin-stat-label">总用户数</span>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>账号</th>
+                        <th>密码 (SHA256)</th>
+                        <th>已购产品</th>
+                        <th>角色</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for uname, info in users.items() %}
+                    <tr>
+                        <td><code class="user-code">{{ uname }}</code></td>
+                        <td><code class="user-code" style="font-size:0.7rem;">{{ info.password[:16] }}...</code></td>
+                        <td>
+                            <div class="tag-list">
+                                {% for p in info.get('purchases', []) %}
+    <span class="tag">{{ products.get(p, {}).get("short", p) }}</span>
+                                {% else %}
+                                    <span style="color: var(--gray-400); font-size:0.8125rem;">无</span>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>
+                            {% if info.get('role') == 'admin' %}
+                                <span class="tag" style="background:#FEF3C7;color:#D97706;">管理员</span>
+                            {% else %}
+                                <span class="tag">用户</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <button class="btn btn-ghost btn-sm" onclick="editUser('{{ uname }}', {{ info.get('purchases', [])|tojson }})">编辑</button>
+                                {% if uname != 'admin' and info.get('role') != 'admin' %}
+                                    <form method="POST" action="/shop/admin/grant" style="display:inline;">
+                                        <input type="hidden" name="username" value="{{ uname }}">
+                                        <select name="condition" onchange="this.form.submit()" style="font-size:0.75rem;padding:4px 8px;border:1px solid var(--border);border-radius:4px;">
+                                            <option value="">授予产品...</option>
+{% for key, p in products.items() %}
+                                            <option value="{{ key }}">{{ p.short }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Add/Edit User Modal -->
+<div id="addModal" class="modal hidden">
+    <div class="modal-backdrop" onclick="hideModal()"></div>
+    <div class="modal-card">
+        <h2 id="modalTitle">添加用户</h2>
+        <form method="POST" action="/shop/admin/add_user" id="userForm">
+            <div class="field">
+                <label for="add_username">账号</label>
+                <input type="text" id="add_username" name="username" required placeholder="用户登录名">
+            </div>
+            <div class="field">
+                <label for="add_password">密码</label>
+                <input type="text" id="add_password" name="password" required placeholder="设置初始密码">
+            </div>
+            <fieldset>
+                <legend>已购产品</legend>
+                {% for key, p in products.items() %}
+                <label class="checkbox-label">
+                    <input type="checkbox" name="purchases" value="{{ key }}">
+                    <span>{{ p.icon }} {{ p.name }}</span>
+                </label>
+                {% endfor %}
+            </fieldset>
+            <div class="modal-actions">
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-outline" onclick="hideModal()">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function showAddUser() {
+    document.getElementById('modalTitle').textContent = '添加用户';
+    document.getElementById('userForm').action = '/shop/admin/add_user';
+    document.getElementById('addModal').classList.remove('hidden');
+    document.getElementById('add_username').value = '';
+    document.getElementById('add_password').value = '';
+    document.getElementById('add_username').readOnly = false;
+    document.querySelectorAll('#userForm input[type=checkbox]').forEach(cb => cb.checked = false);
+}
+
+function editUser(username, purchases) {
+    document.getElementById('modalTitle').textContent = '编辑用户: ' + username;
+    document.getElementById('userForm').action = '/shop/admin/edit_user';
+    document.getElementById('add_username').value = username;
+    document.getElementById('add_username').readOnly = true;
+    document.getElementById('add_password').value = '';
+    document.querySelectorAll('#userForm input[type=checkbox]').forEach(cb => {
+        cb.checked = purchases.includes(cb.value);
+    });
+    document.getElementById('addModal').classList.remove('hidden');
+}
+
+function hideModal() {
+    document.getElementById('addModal').classList.add('hidden');
+}
+</script>
+{% endblock %}

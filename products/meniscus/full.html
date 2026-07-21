@@ -1,0 +1,2058 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半月板术后康复指南 - 参考7部专业著作</title>
+<style>
+  :root {
+    --primary: #81D8CF;
+    --primary-dark: #5ABFB5;
+    --primary-light: #E0F7F4;
+    --accent: #ff6b35;
+    --warn: #f57c00;
+    --danger: #d32f2f;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --text-muted: #636e72;
+    --border: #e0e0e0;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #5ABFB5 0%, #81D8CF 50%, #B2EBE5 100%);
+    color: #ffffff;
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+  .header p { font-size: 15px; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 12px;
+    color: #fff;
+  }
+  .header .sub-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .header .sub-badges .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #fff;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  /* Surgery type selector */
+  .selector {
+    display: flex;
+    gap: 12px;
+    padding: 20px 0 8px;
+    overflow-x: auto;
+  }
+  .selector-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .selector-btn:hover { border-color: var(--primary); }
+  .selector-btn.active {
+    border-color: var(--primary-dark);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .selector-btn .sub { font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
+  .selector-btn.active .sub { color: var(--primary-dark); }
+
+  /* Phase Tabs */
+  .phase-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 20px 0 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    scrollbar-width: none;
+  }
+  .phase-tabs::-webkit-scrollbar { display: none; }
+  .phase-tab {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+  }
+  .phase-tab:hover { background: var(--primary-light); color: var(--primary); }
+  .phase-tab.active {
+    background: var(--card);
+    color: var(--primary-dark);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  }
+  .phase-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+  }
+
+  .main { padding: 0 0 60px; }
+
+  .surgery-content { display: none; }
+  .surgery-content.active { display: block; }
+
+  .phase-group { display: none; }
+  .phase-group.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .card h3 {
+    font-size: 16px;
+    color: var(--text);
+    margin: 20px 0 10px;
+  }
+  .card h3:first-of-type { margin-top: 0; }
+
+  .info-box {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 14px;
+    border-left: 4px solid;
+  }
+  .info-box.info {
+    background: #e3f2fd;
+    border-color: #1976d2;
+    color: #1565c0;
+  }
+  .info-box.warn {
+    background: #fff3e0;
+    border-color: var(--warn);
+    color: #e65100;
+  }
+  .info-box.danger {
+    background: #fce4ec;
+    border-color: var(--danger);
+    color: #c62828;
+  }
+  .info-box.success {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: #1b5e20;
+  }
+  .key-box {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+    border: 1px solid #a7f3d0;
+    border-radius: 10px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .key-box-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: white;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .key-box-body {
+    padding: 12px 16px 14px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .key-box-body .item {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .key-box-body .dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+  .key-box-body .dot.coral { background: #FF7043; }
+  .key-box-body .dot.pink { background: #EC407A; }
+  .key-box-body .dot.orange { background: #FFA726; }
+  .key-box-body .dot.red { background: #EF5350; }
+  .key-box-body .dot.mint { background: #81D8CF; }
+  .key-box-body .dot.teal { background: #81D8CF; }
+  .key-box-body .dot.peach { background: #FCD34D; }
+  .key-box-body .dot.lavender { background: #A78BFA; }
+  .key-box-body .dot.blue { background: #60A5FA; }
+  .key-box-body .dot.rose { background: #E91E63; }
+  .key-box-body .dot.purple { background: #AB47BC; }
+  .key-box-body .dot.deep-red { background: #E53935; }
+  .key-box-body .dot.deep-purple { background: #7E57C2; }
+  .key-box-body .dot.deep-orange { background: #F4511E; }
+  .key-box-body .title { font-weight: 600; }
+  .key-box-body .title.coral { color: #FF7043; }
+  .key-box-body .title.red { color: #EF5350; }
+  .key-box-body .sub-label { color: #AB47BC; font-weight: 600; }
+  .key-box-body .sub-text { font-size: 12px; color: #000000; }
+  .key-box-body .title.rose { color: #E91E63; }
+  .key-box-body .title.purple { color: #AB47BC; }
+  .key-box-body .title.pink { color: #EC407A; }
+  .key-box-body .title.orange { color: #FFA726; }
+  .key-box-body .title.deep-purple { color: #7E57C2; }
+  .key-box-body .title.deep-red { color: #E53935; }
+  .key-box-body .title.deep-orange { color: #F4511E; }
+  .key-box-body .sub-label.amber { color: #FFA726; font-weight: 600; }
+  .key-box-body .sub-label.cyan { color: #26C6DA; font-weight: 600; }
+  .key-box-body .sub-label.rose { color: #E91E63; font-weight: 600; }
+
+  .exercise {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .exercise:last-child { border-bottom: none; }
+  .exercise-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .exercise-icon.green { background: #e8f5e9; }
+  .exercise-icon.blue { background: #e3f2fd; }
+  .exercise-icon.orange { background: #fff3e0; }
+  .exercise-icon.purple { background: #f3e5f5; }
+  .exercise-body { flex: 1; }
+  .exercise-body h4 { font-size: 15px; margin-bottom: 4px; }
+  .exercise-body p { font-size: 14px; color: var(--text-muted); }
+  .exercise-body .meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .exercise-body .meta span {
+    background: var(--bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+  }
+
+  .milestone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 14px;
+  }
+  .milestone .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .milestone .dot.green { background: #4caf50; }
+  .milestone .dot.yellow { background: #ff9800; }
+  .milestone .dot.red { background: #f44336; }
+
+  .checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .checklist label:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+  }
+  .checklist label.checked {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+
+  .compare-table { width:100%; border-collapse: collapse; font-size:14px; margin: 12px 0; }
+  .compare-table th {
+    padding: 10px;
+    text-align: left;
+    background: var(--primary-light);
+    border-bottom: 2px solid var(--primary);
+  }
+  .compare-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table .highlight { background: #fff3e0; }
+
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px; }
+    .exercise { gap: 10px; }
+    .exercise-icon { width: 32px; height: 32px; font-size: 16px; }
+    .selector-btn { min-width: 100px; padding: 10px 12px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦵 半月板术后康复指南</h1>
+
+  <div class="sub-badges">
+    <span class="tag">🔧 半月板缝合修复</span>
+    <span class="tag">✂️ 半月板部分切除</span>
+  </div>
+  <div class="badge">请先选择手术类型 ↓</div>
+</div>
+
+<div class="container">
+
+  <!-- Surgery Type Selector -->
+  <div class="selector" id="surgerySelector">
+    <div class="selector-btn active" data-surgery="repair">
+      🧵 半月板缝合修复
+      <div class="sub">术后严格限制负重，恢复周期较长</div>
+    </div>
+    <div class="selector-btn" data-surgery="meniscectomy">
+      ✂️ 半月板部分切除
+      <div class="sub">术后可早期负重，恢复周期较短</div>
+    </div>
+  </div>
+
+  <div style="background:#fff3e0;border-radius:12px;padding:14px 18px;margin-bottom:14px;border:1px solid #FFE082;font-size:13px;color:#333;line-height:1.6;">
+    <strong style="font-size:14px;">📋 使用说明</strong><br>
+    本指南仅供参考与学习，不构成医疗建议。半月板术后康复因个体差异（手术方式、撕裂类型、缝合技术、身体条件等）而不同，请务必在您的主治医师或康复治疗师指导下进行训练。作者不对因使用本指南而导致的任何损伤或后果承担责任。训练中出现疼痛加重或不适，请立即停止并咨询专业医师。
+  </div>
+
+  <!-- Repair Content -->
+  <div class="surgery-content active" data-surgery="repair">
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="r0">📋 总览</button>
+      <button class="phase-tab" data-phase="r1">🛌 0-2周</button>
+      <button class="phase-tab" data-phase="r2">🚶 2-4周</button>
+      <button class="phase-tab" data-phase="r3">🚴 4-6周</button>
+      <button class="phase-tab" data-phase="r4">🏋️ 6-8周</button>
+      <button class="phase-tab" data-phase="r5">🏃 8-12周</button>
+      <button class="phase-tab" data-phase="r6">⚡ 12周+</button>
+    </div>
+
+    <!-- Repair Overview -->
+    <div class="phase-group active" data-phase="r0">
+      <div class="card">
+        <h2>🧵 半月板缝合修复术 · 康复总览</h2>
+        <div class="key-box">
+          <div class="key-box-header">📌 关键须知</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span style="background:#FF8A65;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#FF8A65;font-weight:600;">血供分区：</span>半月板血供由外向内呈三级递减 — 
+              <strong>外1/3</strong>血供丰富 → 
+              <strong>中1/3</strong>血供有限 → 
+              <strong>内1/3</strong>无血供。详见下方血供分区图。</div>
+            </div>
+            <div class="item">
+              <span style="background:#FFB74D;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#FFB74D;font-weight:600;">愈合关键期：</span>术后<strong>前4-6周</strong>是愈合关键期。《骨科术后康复指南》强调：错误的负重或屈膝角度可能直接导致缝合处撕裂。</div>
+            </div>
+            <div class="item">
+              <span style="background:#E53935;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#E53935;font-weight:600;">部位差异：</span>
+                <div style="margin-top:3px;padding-left:12px;"><strong class="sub-label amber">· 体部（红-白交界带）：</strong><span class="sub-text">血供较好，愈合能力优</span></div>
+                <div style="margin-top:2px;padding-left:12px;"><strong class="sub-label amber">· 后角：</strong><span class="sub-text">血供差，术后4周内屈膝≤90°</span></div>
+                <div style="margin-top:2px;padding-left:12px;"><strong class="sub-label amber">· 前角：</strong><span class="sub-text">屈膝限制较小，需防缝线切割</span></div>
+              </div>
+            </div>
+            <div class="item">
+              <span style="background:#AB47BC;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#AB47BC;font-weight:600;">撕裂类型：</span><span class="sub-text">纵行撕裂 > 桶柄样撕裂 > 放射裂（愈合率递降）。</span></div>
+            </div>
+            <div class="item">
+              <span style="background:#26C6DA;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#26C6DA;font-weight:600;">半月板临床测试（《Magee评估》）：</span><span class="sub-text">McMurray测试敏感度61%、特异度84%；Apley挤压测试、Thessaly负重旋转测试是临床常用评估方法。了解这些测试有助于理解医生的复查判断。</span></div>
+            </div>
+            <div class="item">
+              <span style="background:#F4511E;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#F4511E;font-weight:600;">负重指南（按部位）：</span>
+                <div style="margin-top:3px;padding-left:12px;"><strong class="sub-label rose">· 红区修复：</strong><span class="sub-text">术后6周可完全负重。血供丰富，愈合较快。</span></div>
+                <div style="margin-top:2px;padding-left:12px;"><strong class="sub-label rose">· 白区/红-白交界修复：</strong><span class="sub-text">完全负重需延长至8-10周。《临床康复医学》案例报道：放射裂修复后4-6个月内避免深蹲，因屈膝90°时半月板负荷从50%增至90%。</span></div>
+                <div style="margin-top:2px;padding-left:12px;"><strong class="sub-label rose">· 后角修复：</strong><span class="sub-text">术后4周内屈膝限制≤90°，负重要求更严格。</span></div>
+              </div>
+            </div>
+            <div class="item">
+              <span style="background:#7E57C2;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="color:#7E57C2;font-weight:600;">早期康复窗口：</span>
+                <div style="margin-top:3px;padding-left:12px;"><strong class="sub-label cyan">· 尽早启动基础训练：</strong><span class="sub-text">《骨科术后康复》研究显示：术后6天即开始康复的患者，3周即恢复关节活动度；而术后89天开始的患者需要17周。应尽早（术后1周内）在保护下开始基础训练。</span></div>
+                <div style="margin-top:2px;padding-left:12px;"><strong class="sub-label cyan">· 保护前提下的早期活动：</strong><span class="sub-text">在严格限制负重和屈膝角度的前提下，术后第1天即可开始股四头肌等长收缩、踝泵等基础训练，以预防肌肉萎缩和深静脉血栓。</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);">🪡 缝合针数与康复</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span class="title red">针数原则：</span>通常撕裂每 1cm 缝合 1 针。2 针以下为少针数修复，3-4 针为中针数，5 针以上为多针数修复。针数越多，修复稳定性越高，但组织创伤和异物反应也相应增加。</div>
+            </div>
+            <div class="item">
+              <span class="dot orange"></span>
+              <div><span class="title orange">康复差异：</span>
+                <div style="margin-top:3px;"><strong style="color:#AB47BC;">· 少针数（1-2 针）：</strong><span class="sub-text">术后可适度早期活动，屈膝限制较少（≤60°），4 周后逐步增加活动范围。注意避免过度负荷。</span></div>
+                <div style="margin-top:3px;"><strong style="color:#AB47BC;">· 中针数（3-4 针）：</strong><span class="sub-text">标准康复路径，4 周内屈膝限制 ≤90°，6 周后逐步负重。愈合窗口期需严格遵循。</span></div>
+                <div style="margin-top:3px;"><strong style="color:#AB47BC;">· 多针数（5 针+）：</strong><span class="sub-text">建议延长制动期至 6 周，屈膝限制 ≤60°，8 周后开始部分负重。需警惕缝线切割风险。</span></div>
+              </div>
+            </div>
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span class="title red">缝合技术：</span>垂直褥式缝合强度优于水平褥式，全内缝合技术对组织损伤更小。联合 ACL 重建时，多针数修复可提供更稳定的愈合环境。</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin:16px 0;max-width:700px;margin-left:auto;margin-right:auto;">
+          <div style="margin-bottom:24px;max-width:350px;margin-left:auto;margin-right:auto;">
+            <a href="https://www.medicalgraphics.de/wp-content/uploads/2023/10/blood-flow-meniscus-top.jpg" target="_blank" rel="noopener" style="display:block;overflow:hidden;border-radius:8px;border:1px solid var(--border);">
+              <img src="../../xhs-images/meniscus-zones-medicalgraphics.jpg" alt="半月板血供三区（红-红区/红-白区/白-白区）俯视图" style="width:108%;max-width:none;margin:-4% 0 0 -4%;display:block;">
+            </a>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">图1：半月板血供分区俯视图 — 外缘红区（血供丰富）、中间红-白区（血供有限）、内缘白区（无血供）<br>（来源：<a href="https://www.medicalgraphics.de" target="_blank" rel="noopener" style="color:var(--accent);">MedicalGraphics.de</a> · CC BY-ND 4.0）</div>
+          </div>
+          <div style="margin-bottom:4px;">
+            <img src="../../xhs-images/meniscus-cross-section-zones.svg" alt="半月板横截面血供分区示意图（红区/红-白区/白-白区）" style="width:100%;border-radius:8px;border:1px solid var(--border);background:#fff;">
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">图2：半月板横截面血供分区 — 外1/3红区（血供丰富）、中1/3红-白区（血供有限）、内2/3白区（无血供）</div>
+          </div>
+        </div>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>核心目标</th>
+              <th>屈膝限制</th>
+              <th>负重限制</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0-2周</strong></td><td>保护缝合处、消肿、肌力激活</td><td>被动 ≤ 90°</td><td>❌ 严格不负重</td></tr>
+            <tr><td><strong>2-4周</strong></td><td>维持活动度、继续肌力训练</td><td>被动 ≤ 90°</td><td>❌ 严格不负重</td></tr>
+            <tr><td><strong>4-6周</strong></td><td>逐步增加屈膝角度、开始负重</td><td>被动 ≤ 110°（后角缝合≤90°）</td><td>⚠️ 足尖点地→部分负重(25%)</td></tr>
+            <tr><td><strong>6-8周</strong></td><td>逐步恢复行走</td><td>主动 110° 被动 120°</td><td>部分负重→全负重</td></tr>
+            <tr><td><strong>8-12周</strong></td><td>力量重建、本体感觉</td><td>全范围（避免深蹲≥90°）</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>12周+</strong></td><td>功能训练→回归运动</td><td>全范围</td><td>✅ 全负重</td></tr>
+          </tbody>
+        </table>
+
+        <div class="key-box" style="margin-top:24px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #0ABAB5 0%, #5EEAD4 100%);">✅ 训练执行原则</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span style="background:#81D8CF;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+              <div><span style="font-weight:700;color:#81D8CF;">保护缝合处第一：</span><span class="sub-text">时间不是最重要的，愈合质量才是</span></div>
+            </div>
+            <div class="item">
+              <span class="dot orange"></span>
+              <div><span class="title orange">控制屈膝幅度：</span><span class="sub-text">深屈膝（>90°）对半月板后角压力大</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#3B82F6;"></span>
+              <div><span style="font-weight:700;color:#3B82F6;">《骨科术后康复指南》肿胀管理：</span><span class="sub-text">术后肿胀是关节源性肌肉抑制（AMI）的重要诱因，肿胀每增加1%，股四头肌激活率下降约1.5%。训练后如肿胀加重，应减少训练量并调整训练类型——以无痛范围的活动为主，避免在肿胀高峰期强行增加活动度。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#8B5CF6;"></span>
+              <div><span style="font-weight:700;color:#8B5CF6;">《基础肌动学》：</span><span class="sub-text">半月板在屈膝时承受的载荷随角度增大而显著增加——0°时约50%的轴向载荷通过半月板传递，90°时增至90%。控制屈膝角度是保护缝合处的力学基础。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#10B981;"></span>
+              <div><span style="font-weight:700;color:#10B981;">《临床康复医学》：</span><span class="sub-text">股四头肌等长收缩每日目标400-800次，是维持肌量的最重要手段；直腿抬高从每日50次（第1周）增至200次（第3周起）。</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#EC4899;"></span>
+              <div><span style="font-weight:700;color:#EC4899;">《解剖列车》筋膜视角：</span><span class="sub-text">半月板损伤不仅影响局部，还破坏了膝关节周围的筋膜张力平衡。侧线（IT束、腓骨肌）和螺旋线（股二头肌→对侧背阔肌）的张力失衡会加剧膝关节旋转不稳定。康复训练中应包含对侧上肢和躯干的筋膜链训练。</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #EF4444 0%, #FCA5A5 100%);">🚫 禁忌</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span class="title red">禁止深屈膝：</span><span class="sub-text">术后6周内禁止主动深屈膝（>90°）</span></div>
+            </div>
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span class="title red">禁止高强度活动：</span><span class="sub-text">术后6周内禁止旋转、急停、深蹲</span></div>
+            </div>
+            <div class="item">
+              <span class="dot red"></span>
+              <div><span class="title red">禁止早期主动屈膝：</span><span class="sub-text">术后0-4周内禁止主动屈膝（如仰卧足跟滑动、坐位勾腿）。主动屈膝产生的腘绳肌收缩会通过关节面压缩力对缝合处产生剪切应力，需在医生确认后方可开始。</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到"啪"的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+
+    <!-- Repair 0-2 weeks -->
+    <div class="phase-group" data-phase="r1">
+      <div class="card">
+        <h2>🛌 第0-2周 · 严格保护期</h2>
+        <div class="info-box danger">
+          <strong>核心任务：保护缝合处 + 消炎消肿 + 股四头肌激活</strong><br>
+          这是半月板愈合最关键的时期。必须严格不负重，避免一切对半月板的压力。
+        </div>
+        <div style="background:#e3f2fd;border-left:4px solid #1976d2;border-radius:8px;padding:12px 14px;font-size:13px;color:#000;line-height:1.7;margin-top:10px;">
+          <strong style="color:#1565c0;">🦯 支具佩戴须知：</strong>术后立即佩戴可调式支具，锁定在<strong>完全伸直位（0°）</strong>。<u>所有时间（含睡眠）均应佩戴</u>，仅康复训练时可摘除。下地行走时必须佩戴并锁定伸直位（严格不负重）。支具可防止睡眠中无意识的屈膝动作，保护缝合处免受意外牵拉。通常需佩戴至医生确认愈合情况后逐步调整。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>控制术后肿胀和疼痛</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>被动屈膝 ≥ 90°（支具保护范围内）</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>伸膝达 0°（完全伸直）</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌可自主收缩</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>腋拐辅助下严格不负重</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第2-4周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肿胀疼痛稳定控制</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>被动屈膝≥90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>伸膝达0°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌可自主收缩</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>股四头肌等长收缩 <span style="color:var(--danger);font-size:12px;">★ 最重要</span></h4>
+            <p>仰卧，膝后垫毛巾卷，用力绷紧大腿前侧，膝盖下压毛巾，感受髌骨上提。术后麻醉消退后立即开始。《临床康复医学》指出：术后关节源性肌肉抑制（AMI）可导致股四头肌激活率降至正常的30-50%，每日<strong>400-800次</strong>等长收缩是维持肌量、克服AMI的基础手段。</p>
+            <div class="meta">
+              <span>保持 5-10秒</span>
+              <span>放松 5秒</span>
+              <span>每日总量 400-800次</span>
+              <span>术后当天即开始</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🦶</div>
+          <div class="exercise-body">
+            <h4>踝泵（踝关节泵动） <span style="color:var(--danger);font-size:12px;">★ 预防血栓</span></h4>
+            <p>踝关节最大限度勾脚尖（5秒）→绷脚尖（5秒），利用小腿肌群的交替收缩促进下肢静脉回流。《骨科术后康复指南》强调：此阶段制动状态下深静脉血栓风险显著升高，踝泵是最简单有效的预防手段。</p>
+            <div class="meta">
+              <span>每日 500-1000次</span>
+              <span>每小时做1-2组</span>
+              <span>每组 20-30次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">🦵</div>
+          <div class="exercise-body">
+            <h4>被动伸膝（足跟垫高）</h4>
+            <p>仰卧，足跟垫高（枕头/毛巾卷），膝盖悬空完全放松，利用重力使膝关节自然下垂至完全伸直。术后早期伸膝受限是常见并发症，《AAOS骨科术后康复》强调：伸膝受限可直接导致步态异常和髌股关节压力增加，术后第1天即应开始伸膝训练。</p>
+            <div class="meta">
+              <span>保持 15-20分钟/次</span>
+              <span>每天 4-5次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">↔️</div>
+          <div class="exercise-body">
+            <h4>髌骨活动度训练</h4>
+            <p>手推髌骨向内/外/上/下滑动，每个方向保持5秒。《Magee骨科物理治疗评估》指出：术后制动引起的髌股关节粘连是限制屈膝活动度的常见因素，早期髌骨松动可有效预防关节粘连、改善髌骨滑行轨迹。</p>
+            <div class="meta">
+              <span>每个方向 15次</span>
+              <span>一次 3组</span>
+              <span>每天 1-2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">🔄</div>
+          <div class="exercise-body">
+            <h4>被动屈膝（支具保护下）</h4>
+            <p>坐位，患腿自然下垂，利用重力被动屈膝。支具调至0-90°范围，限制屈膝不超90°。</p>
+            <div class="meta"><span>范围 0-90°</span><span>每次 10分钟</span><span>每天 3次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🦵</div>
+          <div class="exercise-body">
+            <h4>臀部与内收肌激活 <span style="color:var(--danger);font-size:12px;">★ 稳定骨盆</span></h4>
+            <p>臀肌和内收肌是下肢运动链和骨盆稳定的基础。半月板术后早期激活有助于改善步态、减少代偿。支具锁定于伸膝位即可完成，推荐选2-3种：</p>
+            <div style="background:#E3F2FD;border:1px solid #E3F2FD;border-radius:8px;padding:10px 14px;margin:8px 0 4px;">
+              <div style="font-size:13px;color:#000;line-height:1.8;">
+                <strong>① 内收肌等长收缩（夹枕）：</strong>仰卧屈膝，双膝间夹一软枕，大腿内侧发力向中间夹紧，保持5-10秒。无关节活动，对缝合处无应力。<br>
+                <strong>② 仰卧内收滑动：</strong>仰卧，患腿伸直稍外展，缓慢向中线滑动至双腿并拢，末端保持5秒。<br>
+                <strong>③ 侧卧髋外展（直腿抬腿）：</strong>侧卧，下方腿微屈，患腿在上伸直，缓慢抬至约30°，保持5秒。
+              </div>
+            </div>
+            <div class="meta">
+              <span>每组 15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+              <span>保持 3-5秒</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 患肢抬高（高于心脏水平）</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 腋拐：严格不负重</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 佩戴支具锁定于完全伸直位行走</span></div>
+            </div>
+            <div class="item">
+              <span class="dot rose"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免主动屈膝</span></div>
+            </div>
+            <div class="item">
+              <span class="dot coral"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免患肢承重</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Repair 2-4 weeks -->
+    <div class="phase-group" data-phase="r2">
+      <div class="card">
+        <h2>🚶 第2-4周 · 早期保护期</h2>
+        <div class="info-box warn">
+          <strong>注意：</strong>半月板仍处于愈合早期，继续严格不负重。逐步增加股四头肌力量。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌自主收缩有力</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>被动屈膝维持 90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>伸膝完全伸直</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>不负重下直腿抬高</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第4-6周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肿胀无明显加重</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>直腿抬高无迟滞</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>被动屈膝维持90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>无感染迹象</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>膝盖垫高末端伸膝训练（进阶）</h4>
+            <p>仰卧，患膝下方垫卷好的毛巾或软枕（使膝屈约30°），绷紧股四头肌、勾脚尖，将足跟缓慢抬离床面至膝关节完全伸直，末端保持3-5秒后缓慢放下。<strong>《骨科术后康复指南》指出：</strong>垫高伸膝将股四头肌收缩与膝关节末端伸直相结合，能有效克服术后伸肌迟滞，重建膝关节完全伸直的主动控制能力。<strong>《基础肌动学》补充：</strong>膝屈30°位是股内侧斜肌（VMO）肌电活动最活跃的关节角度，在此角度下进行末端伸膝训练可优先激活VMO、改善髌骨滑行轨迹。从无痛范围开始，逐步增加次数和保持时间。</p>
+            <div class="meta"><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3-5秒</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">📐</div>
+          <div class="exercise-body">
+            <h4>直腿抬高</h4>
+            <p>仰卧，健膝弯曲，患腿伸直绷紧后抬高15-20cm，末端保持后缓慢放下。<strong>《骨科术后康复指南》强调：</strong>抬腿全程必须保持膝关节完全伸直——若出现屈膝代偿（迟滞），说明股四头肌激活不足，应退回等长收缩训练。<br>
+            <span style="color:var(--danger);"><strong>退阶信号：</strong>如抬腿中出现膝关节无法保持伸直（迟滞），或在末端保持时出现代偿性骨盆后倾，说明股四头肌控制不足，应退回等长收缩巩固基础后重新进阶。</span></p>
+            <div class="meta"><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3-5秒</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">🦵</div>
+          <div class="exercise-body">
+            <h4>被动屈膝（坐位垂腿）</h4>
+            <p>坐高椅，患腿自然下垂，利用重力被动屈膝。保持屈膝在90°以内。<strong>《基础肌动学》指出：</strong>屈膝90°时半月板承受约90%的轴向载荷，此阶段的被动屈膝必须保守，避免对缝合处产生剪切力。</p>
+            <div class="meta"><span>范围 0-90°</span><span>每次 10分钟</span><span>每天 3次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">↔️</div>
+          <div class="exercise-body">
+            <h4>髌骨活动度训练</h4>
+            <p>手推髌骨向内/外/上/下滑动，每个方向保持5秒。<strong>《Magee骨科物理治疗评估》</strong>指出：术后2-4周是预防髌股关节粘连的关键窗口期，规律的髌骨松动可维持髌骨活动度、改善关节滑动机制。</p>
+            <div class="meta">
+              <span>每个方向 15次</span>
+              <span>一次 3组</span>
+              <span>每天 1-2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">🌊</div>
+          <div class="exercise-body">
+            <h4>非负重下踝关节各方向活动</h4>
+            <p>仰卧，患腿伸直，踝关节做内翻、外翻、画圈等多方向活动。<strong>《Magee骨科物理治疗评估》</strong>指出：踝关节本体感觉输入影响膝关节周围的肌张力平衡，维持踝关节灵活性是步态训练的前置条件。</p>
+            <div class="meta"><span>每个方向 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🦵</div>
+          <div class="exercise-body">
+            <h4>臀部训练（进阶） <span style="color:var(--danger);font-size:12px;">★ 预防臀肌抑制</span></h4>
+            <p>在0-2周基础上增加训练种类和强度。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>指出：膝关节术后臀肌常因保护性步态和制动而出现抑制萎缩，尽早激活是恢复下肢力线的关键。推荐选3-4种：</p>
+            <div style="background:#E3F2FD;border:1px solid #E3F2FD;border-radius:8px;padding:10px 14px;margin:8px 0 4px;">
+              <div style="font-size:13px;color:#000;line-height:1.8;">
+                <strong>① 臀桥：</strong>仰卧位被动屈膝后进行<span style="color:#EF4444;font-weight:700;">（需外力辅助将患侧足跟置于床面）</span>，双足踏床，臀部发力向上抬起至肩-髋-膝成一直线，末端保持3-5秒。<br>
+                <strong>② 蚌式开合：</strong>侧卧，双膝屈曲约45°，保持足跟并拢，上方膝盖向上打开约30-45°，末端保持5秒。<br>
+                <strong>③ 侧卧髋外展（进阶）：</strong>侧卧，患腿向上伸直抬离，可在踝部系弹力带增加阻力。<br>
+                <strong>④ 仰卧内收滑动（弹力带）：</strong>仰卧，踝部系弹力带固定于外侧，抗阻内收滑动。
+              </div>
+            </div>
+            <div class="meta">
+              <span>每组 15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+              <span>保持 3-5秒</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 继续严格不负重</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 支具行走时锁定于0°</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 训练时支具可调至0-90°</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免坐位主动屈膝</span></div>
+            </div>
+            <div class="item">
+              <span class="dot rose"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免任何负重活动</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Repair 4-6 weeks -->
+    <div class="phase-group" data-phase="r3">
+      <div class="card">
+        <h2>🚶 第4-6周 · 过渡负重期</h2>
+        <div class="info-box info">
+          <strong>开始逐步负重：</strong>经医生确认半月板愈合情况后，从足尖点地开始逐步过渡到部分负重。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>被动屈膝达 110°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>从足尖点地过渡到25-50%体重负重</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>逐步减少腋拐使用</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第6-8周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝≥90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌肌力达3/5级</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肿胀持续减轻</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>渐进负重训练</h4>
+            <p>经医生确认半月板愈合情况后开始。顺序：足尖点地→25%体重（双手扶拐）→50%体重（单拐）→完全负重，每3-5天进阶一级。<strong>《基础肌动学》指出：</strong>轴向载荷通过半月板传递的比例随屈膝角度增大而增加——0°时约50%，及时恢复负重下的伸膝位力线有助于半月板获得生理性应力刺激，促进胶原重塑。<br><span style="color:#EF4444;font-weight:700;">⚠️ 重要提醒：请务必在主治医师明确告知可负重后方可开始本训练，切勿自行提前负重，以免影响半月板愈合。</span></p>
+            <div class="meta"><span>每3-5天进阶一级</span><span>根据医嘱执行</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🔄</div>
+          <div class="exercise-body">
+            <h4>坐位被动屈膝（进展）</h4>
+            <p>坐床边，患腿自然下垂，健腿轻压辅助屈膝至无痛极限。仍避免主动用力屈膝，以保护缝合处免受肌肉收缩产生的关节面压缩力。<strong>《骨科术后康复指南》</strong>建议：被动屈膝角度从90°逐步增至110°，以牵伸后关节囊、预防关节粘连。</p>
+            <div class="meta"><span>范围 90→110°</span><span>每次 10分钟</span><span>每天 3次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">🦵</div>
+          <div class="exercise-body">
+            <h4>股四头肌等长收缩（负重位）</h4>
+            <p>站立位（双拐支撑），患腿足尖点地，绷紧股四头肌将膝盖向后压直。在此基础上，可进阶至坐位或仰卧位膝盖垫高末端伸膝训练——患膝下方垫毛巾卷（屈约30°），缓慢伸膝抬足跟至完全伸直，末端保持3-5秒后放下。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>强调：闭链下的股四头肌收缩可协同腘绳肌和臀肌共同稳定膝关节；而末端伸膝训练则专项强化股四头肌完全伸膝的主动控制能力，两者结合为脱拐行走建立完整的运动控制基础。<strong>《AAOS骨科术后康复》推荐：</strong>在负重位等长收缩之外补充末端伸膝训练，可有效消除术后伸膝迟滞，加速正常步态中摆动相末期膝关节充分伸直的恢复。</p>
+            <div class="meta"><span>保持 3-5秒</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🦶</div>
+          <div class="exercise-body">
+            <h4>坐位屈伸膝（无负重）</h4>
+            <p>坐高椅，患腿在无阻力下缓慢屈伸膝，全程控制。<strong>《临床康复医学》</strong>指出：开链无负重屈伸膝可激活股四头肌离心控制能力，改善关节本体感觉。活动过程中如出现关节内弹响或疼痛，应暂停并咨询治疗师。</p>
+            <div class="meta"><span>每组 15次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🔄</div>
+          <div class="exercise-body">
+            <h4>仰卧位主动屈膝 <span style="color:var(--danger);font-size:12px;">★ 逐步启动主动活动</span></h4>
+            <p>仰卧，足跟压住床面往臀部滑动，尽力屈膝至最大角度，末端保持5秒。健腿可辅助推动患侧足跟增加屈膝幅度。<strong>注意：</strong>此阶段允许低负荷主动屈膝，但仍避免开链坐位勾腿（腘绳肌孤立收缩模式），以仰卧位闭链滑行为主。如屈膝过程中出现关节内尖锐疼痛，应退回被动屈膝并咨询治疗师。</p>
+            <div class="meta">
+              <span>末端保持5秒</span>
+              <span>一组 15个</span>
+              <span>一次 3组</span>
+              <span>每天 1-2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>单腿臀桥 <span style="color:var(--danger);font-size:12px;">★ 单侧臀肌激活</span></h4>
+            <p>仰卧，健腿伸直抬起（约与地面成45°），患腿屈膝踩床，臀部发力将骨盆抬离床面至肩-膝成一直线，最高点夹臀保持5秒，缓慢放下。<strong>《临床康复医学》指出：</strong>单腿臀桥对患侧臀肌的募集效率显著高于双腿臀桥，是纠正术后步态不对称的关键训练。<br>
+            <span style="color:var(--danger);"><strong>退阶信号：</strong>如训练中出现患侧髋部下坠、骨盆旋转、或腰部代偿性弓起，说明臀肌激活不足或核心控制不稳，应退回双腿臀桥巩固基础后再行进阶。</span></p>
+            <div class="meta">
+              <span>保持 5秒</span>
+              <span>每组 10次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🩼</div>
+          <div class="exercise-body">
+            <h4>拄拐行走与步态进阶 <span style="color:var(--danger);font-size:12px;">★ 步态训练</span></h4>
+            <p>半月板修复术后4-6周，根据愈合情况开始部分负重拄拐行走。<strong>双拐阶段（4-6周）：</strong>腋拐与患腿同步迈出→健腿跟上，形成"拐-患-健"三点步态，足跟先着地。<strong>单拐阶段（6-8周）：</strong>健手持拐→拐与患腿同步迈出→健腿跟上。单拐必须持于健侧。<strong>脱拐阶段（8周后）：</strong>弃拐独立行走，重点关注步态对称性。《骨科术后康复指南》强调：避免长期跛行代偿——跛行超过4周可导致对侧髋关节和腰椎的代偿性疼痛。</p>
+            <div class="meta">
+              <span>每次 5-10分钟</span>
+              <span>每天 3-4次</span>
+              <span>双拐→单拐→脱拐</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 根据医生指导逐步增加负重</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 支具调至0-90°活动范围行走，睡眠时可解锁至0-60°</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免屈膝 > 110°</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#f59e0b;"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免长时间站立</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Repair 6-8 weeks -->
+    <div class="phase-group" data-phase="r4">
+      <div class="card">
+        <h2>🏋️ 第6-8周 · 力量重建起始</h2>
+        <div class="info-box success">
+          <strong>愈合关键节点：</strong>多数半月板缝合在术后6周实现初步愈合。可开始逐步恢复全范围活动度和力量训练。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>屈膝达 120°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>逐步过渡至完全负重行走</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>脱拐行走</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>开始闭链低强度训练</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第8-12周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝≥110°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>可在支具保护下部分负重行走</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>无关节交锁</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>双腿微蹲（0-30°）</h4>
+            <p>站立扶稳固支撑，双膝微屈0-30°，重心均匀分布于双足，慢速控制下蹲和起立。<strong>《基础肌动学》</strong>指出：屈膝30°以内时半月板载荷增幅有限，此范围的闭链训练可在安全前提下启动下肢肌群协同收缩模式。</p>
+            <div class="meta"><span>屈膝 0-30°</span><span>每组 10次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🚴</div>
+          <div class="exercise-body">
+            <h4>固定自行车（坐垫调高）</h4>
+            <p>坐垫调至最高位以减小屈膝角度，无阻力空蹬。逐步降低坐垫以增加屈膝范围。<strong>《AAOS骨科术后康复》推荐：</strong>自行车训练是早期安全的闭链有氧运动，可促进滑液循环、改善关节营养代谢，且对半月板缝合处产生可控的低负荷刺激。</p>
+            <div class="meta"><span>每次 5-10分钟</span><span>无阻力</span><span>每天 1次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">📐</div>
+          <div class="exercise-body">
+            <h4>直腿抬高（踝部负重）</h4>
+            <p>踝部绑轻量沙袋（0.5-1kg），仰卧直腿抬高，末端保持3-5秒后缓慢放下。<strong>《临床康复医学》</strong>认为：渐进抗阻下的直腿抬高可有效募集股四头肌和髂腰肌，且不对膝关节产生剪切应力，是此阶段安全有效的力量训练手段。</p>
+            <div class="meta"><span>负重 0.5-1kg</span><span>每组 15次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🦵</div>
+          <div class="exercise-body">
+            <h4>坐位伸膝（弹力带）</h4>
+            <p>坐位，弹力带绕膝前侧固定于椅腿，伸膝对抗阻力。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>强调：开链伸膝最后30°是股四头肌内侧头（VMO）最活跃的范围，此训练有助于纠正髌骨滑行轨迹，预防髌股关节并发症。</p>
+            <div class="meta"><span>阻力 轻→中</span><span>每组 15次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">↕️</div>
+          <div class="exercise-body">
+            <h4>坐位起立训练</h4>
+            <p>从高凳坐位起立，双脚均匀承重，慢速控制起立和坐下，训练离心控制能力。<strong>《体能训练》</strong>指出：坐-站转移是日常生活中最基础的闭链功能动作，恢复该动作的对称性控制是步态重建的前提。</p>
+            <div class="meta"><span>每组 10次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>单腿臀桥 <span style="color:var(--danger);font-size:12px;">★ 单侧臀肌力量</span></h4>
+            <p>仰卧，健腿伸直抬起（约与地面成45°），患腿屈膝踩床，臀部发力将骨盆抬离床面至肩-膝成一直线，最高点夹臀保持5秒，缓慢放下。<strong>《肌肉骨骼系統肌動學復健醫學基礎》指出：</strong>单腿臀桥能有效激活患侧臀肌，改善单腿支撑期的骨盆稳定性，是步态对称性恢复的基础训练。可从双腿臀桥起始，过渡至单腿。</p>
+            <div class="meta">
+              <span>保持 5秒</span>
+              <span>每组 10-15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">🚶</div>
+          <div class="exercise-body">
+            <h4>屈髋练习 <span style="color:var(--danger);font-size:12px;">★ 髋膝踝联动</span></h4>
+            <p>扶栏杆或椅背站立，患腿在前、健腿在后呈弓步站位。缓慢屈曲患侧髋关节和膝关节，使身体重心前移，患侧膝朝向脚尖方向屈至约45°，末端保持3秒后蹬地伸膝伸髋还原。<strong>《骨科术后康复指南》强调：</strong>远固定屈髋是闭链运动——足底固定使髋膝踝三关节形成联动链，模拟步态周期中支撑相到摆动相的过渡。注意保持躯干直立、患侧膝不内扣。</p>
+            <div class="meta">
+              <span>每组 10-15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 逐步脱拐，注意步态对称</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 对镜行走训练，保持步态自然</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 日间居家可摘除支具，外出及上下楼梯建议佩戴</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免下蹲超过60°</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#f59e0b;"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免旋转动作</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Repair 8-12 weeks -->
+    <div class="phase-group" data-phase="r5">
+      <div class="card">
+        <h2>🏃 第8-12周 · 功能恢复期</h2>
+        <div class="info-box info">
+          <strong>逐步增加活动量：</strong>半月板愈合已较稳定，可开始更多的力量训练和低冲击运动。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>全范围关节活动度</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>上下楼梯基本正常</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肌力逐步恢复</span></div>
+            <div class="item"><span class="dot orange" style="margin-top:6px;"></span><span>平衡能力重建</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第12周以上的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>全范围活动度（基本对称）</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>可全负重行走无痛</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌肌力≥4/5级</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>双腿下蹲（0-60°）</h4>
+            <p>双手可轻扶支撑维持平衡，慢速控制下蹲至60°，注意膝与脚尖方向一致，避免膝关节内扣。<strong>《基础肌动学》指出：</strong>屈膝超过60°后半月板后角承受的载荷呈非线性增长，此阶段限制在60°以内可在力量和安全性之间取得平衡。</p>
+            <div class="meta"><span>屈膝 0-60°</span><span>每组 12次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🦶</div>
+          <div class="exercise-body">
+            <h4>弓步训练（前向/侧向）</h4>
+            <p>前向弓步：前腿屈膝至约30°，膝盖不超过脚尖；后腿微屈保持稳定。侧向弓步：向侧方迈出一大步，屈膝下蹲至约30°，另一腿伸直。<strong>《体能训练》</strong>强调：弓步训练可同时训练股四头肌离心控制和臀肌向心收缩，是回归跑跳运动前的基础功能训练。从矢状面浅弓步开始，逐步增加步幅和速度，再加入侧向弓步。</p>
+            <div class="meta"><span>步幅 小→中</span><span>每组 10次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">↔️</div>
+          <div class="exercise-body">
+            <h4>单腿站立平衡训练</h4>
+            <p>患腿单腿站立，从30秒逐步增至1分钟。可闭眼或站于软垫增加难度。<strong>《Magee骨科物理治疗评估》</strong>指出：单腿站立时间不足30秒提示膝关节本体感觉功能显著下降。此训练有助于重建膝关节周围肌群的姿势控制能力。<br><span style="color:#EF4444;font-weight:700;">⚠️ 重要提醒：请在可完全单腿负重后方可开始此训练。</span></p>
+            <div class="meta"><span>保持 30-60秒</span><span>每次 5组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🏔️</div>
+          <div class="exercise-body">
+            <h4>侧向台阶训练</h4>
+            <p>侧向上下台阶（高度10cm），患腿先上、健腿先下，全程控制。<strong>《临床康复医学》</strong>认为：侧向台阶训练通过冠状面负重转移，可有效激活臀中肌和股四头肌外侧头，纠正因术后保护性步态形成的臀肌抑制。</p>
+            <div class="meta"><span>台阶 10cm</span><span>每组 12次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>正面上台阶 <span style="color:var(--danger);font-size:12px;">★ 单腿闭链力量</span></h4>
+            <p>面对台阶站立，患腿踩于台阶（高度起始10cm），健腿悬空。患腿发力蹬伸伸直，将身体完全升上台阶至单腿站立位，末端保持2-3秒后缓慢下放还原。全程保持躯干直立、患侧膝对准第二足趾、不内扣。<strong>《骨科术后康复指南》建议：</strong>正面上台阶是闭链单腿负重最理想的进阶动作之一，模拟步行上楼的功能模式，要求股四头肌离心-向心协同控制。<strong>《运动医学康复》补充：</strong>此动作可有效激活股内侧斜肌（VMO），改善髌骨运动轨迹。核心是动作质量而非高度，如需增加难度可手持哑铃或增加台阶高度。</p>
+            <div class="meta">
+              <span>台阶高度 10-15cm</span>
+              <span>每组 10-12次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">⬇️</div>
+          <div class="exercise-body">
+            <h4>下台阶训练 <span style="color:var(--danger);font-size:12px;">★ 离心控制</span></h4>
+            <p>站立于台阶（高度10cm），患腿支撑体重，健腿缓慢向下触地再还原。下降过程中患腿离心控制，膝对准第二足趾，保持躯干直立不倾斜。<strong>《骨科术后康复指南》建议：</strong>下台阶是步态周期中承重反应期的功能模拟，要求股四头肌离心控制膝关节屈曲，是单腿稳定性的重要评估指标。从低台阶起始，控制下降速度（3-4秒），避免突然下落。</p>
+            <div class="meta">
+              <span>台阶高度 10-15cm</span>
+              <span>每组 10-12次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">🏋️</div>
+          <div class="exercise-body">
+            <h4>俯卧勾腿</h4>
+            <p>站立位或俯卧位，弹力带轻量抗阻屈膝。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>指出：半月板修复术后腘绳肌常因保护性抑制而萎缩，但屈膝阻力训练需控制强度——过度激进的腘绳肌收缩可能对半月板后角产生牵拉力。以无痛为原则逐步增加阻力。</p>
+            <div class="meta"><span>阻力 轻</span><span>每组 12次</span><span>每天 3组</span></div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 逐步恢复步行距离</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 上下楼梯注意控制</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 支具可全天摘除，不平路面或外出建议佩戴软性护膝</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免深蹲（全蹲）</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#f59e0b;"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免跑步、跳跃、旋转</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Repair 12+ weeks -->
+    <div class="phase-group" data-phase="r6">
+      <div class="card">
+        <h2>⚡ 第12周以上 · 回归运动准备期</h2>
+        <div class="info-box info">
+          <strong>回归运动的标准不仅仅是时间：</strong>需满足肌力、稳定性、功能测试等标准。<br>
+          🦯 支具：此阶段一般已无需佩戴支具。回归对抗性运动初期，部分医师建议使用功能性支具保护约1年，应与医师共同决策。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>患肢肌力 ≥ 健侧85%</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>无膝关节肿胀和疼痛</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>单腿跳距离 ≥ 健侧85%</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>全范围关节活动度无痛</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>运动专项动作无惧怕感</span></div>
+          </div>
+        </div>
+
+        <h3>回归运动路线图</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>时间</th><th>可进行的活动</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>3-4个月</strong></td><td>游泳（蛙泳除外）、椭圆机、固定自行车</td></tr>
+            <tr><td><strong>4-5个月</strong></td><td>直线慢跑、浅蹲训练</td></tr>
+            <tr><td><strong>5-6个月</strong></td><td>变速跑、跳跃训练、非对抗性体育运动</td></tr>
+            <tr><td><strong>6-9个月</strong></td><td>运动专项训练（对抗由弱到强）</td></tr>
+            <tr><td><strong>9-12个月</strong></td><td>回归竞技体育（需专业评估确认）</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box danger">
+          <strong>⚠️ 次全切/全切除患者注意：</strong><br>
+          半月板切除越多，膝关节长期承受的压力越大。术后应避免高冲击、高旋转运动（如足球、篮球、跑步），优先选择游泳、骑行等低冲击运动。否则关节退变（骨关节炎）风险显著增加。
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Meniscectomy Content -->
+  <div class="surgery-content" data-surgery="meniscectomy">
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="m0">📋 总览</button>
+      <button class="phase-tab" data-phase="m1">🛌 0-1周</button>
+      <button class="phase-tab" data-phase="m2">🚶 1-2周</button>
+      <button class="phase-tab" data-phase="m3">🚴 2-4周</button>
+      <button class="phase-tab" data-phase="m4">🏋️ 4-6周</button>
+      <button class="phase-tab" data-phase="m5">🏃 6-12周</button>
+      <button class="phase-tab" data-phase="m6">⚡ 12周+</button>
+    </div>
+
+    <!-- Meniscectomy Overview -->
+    <div class="phase-group active" data-phase="m0">
+      <div class="card">
+        <h2>✂️ 半月板部分切除 · 康复总览</h2>
+        <div class="info-box success">
+          <strong>恢复速度远快于缝合修复：</strong><br>
+          半月板部分切除术是清理性手术，没有"缝合处需要愈合"的限制。《AAOS骨科术后康复》指出：术后可立即在可耐受范围内完全负重和全范围活动。但缺损的半月板不会再生，膝关节长期缓冲能力下降，<strong>肌力训练是终身的关节保护手段</strong>。
+        </div>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>核心目标</th>
+              <th>屈膝目标</th>
+              <th>负重</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0-1周</strong></td><td>消肿止痛、初步活动</td><td>被动 90°</td><td>✅ 可耐受完全负重</td></tr>
+            <tr><td><strong>1-2周</strong></td><td>恢复活动度、激活肌力</td><td>主动 90° 被动 110°</td><td>✅ 逐步脱拐</td></tr>
+            <tr><td><strong>2-4周</strong></td><td>恢复正常行走、闭链训练</td><td>主动 110°</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>4-6周</strong></td><td>力量训练</td><td>全范围</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>6-12周</strong></td><td>功能训练、低冲击运动</td><td>全范围</td><td>✅ 全负重</td></tr>
+            <tr><td><strong>12周+</strong></td><td>回归运动（避免高冲击）</td><td>全范围</td><td>✅ 全负重</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="key-box" style="margin-top:10px;">
+        <div class="key-box-header" style="background:linear-gradient(135deg, #0ABAB5 0%, #5EEAD4 100%);">✅ 训练执行原则</div>
+        <div class="key-box-body">
+          <div class="item">
+            <span style="background:#81D8CF;flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px;"></span>
+            <div><span style="font-weight:700;color:#81D8CF;">早期活动、肌力是保护：</span><span class="sub-text">半月板切除后无缝合限制，可早期全负重和全范围活动。肌肉力量是替代半月板缓冲功能的最佳方式。</span></div>
+          </div>
+          <div class="item">
+            <span class="dot" style="background:#3B82F6;"></span>
+            <div><span style="font-weight:700;color:#3B82F6;">《骨科术后康复指南》肿胀管理：</span><span class="sub-text">术后肿胀是关节源性肌肉抑制（AMI）的重要诱因，肿胀每增加1%，股四头肌激活率下降约1.5%。训练后如肿胀加重，应减少训练量并调整训练类型。</span></div>
+          </div>
+          <div class="item">
+            <span class="dot" style="background:#8B5CF6;"></span>
+            <div><span style="font-weight:700;color:#8B5CF6;">《基础肌动学》：</span><span class="sub-text">屈膝90°时约90%的轴向载荷通过半月板传递；切除后这部分载荷直接作用于关节软骨，加速退变。股四头肌和腘绳肌的力量训练是代偿这一缺陷的核心手段。</span></div>
+          </div>
+          <div class="item">
+            <span class="dot" style="background:#10B981;"></span>
+            <div><span style="font-weight:700;color:#10B981;">控制体重：</span><span class="sub-text">每减轻1kg体重，膝关节负荷减少4kg。体重管理是半月板切除后关节保护的重要手段。</span></div>
+          </div>
+          <div class="item">
+            <span class="dot red"></span>
+            <div><span style="font-weight:700;color:#EF4444;">永远记住：</span><span class="sub-text">半月板切除后膝关节退变风险增加，终生需要保护关节。选择低冲击运动，保持规律力量训练。</span></div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 0-1 week -->
+    <div class="phase-group" data-phase="m1">
+      <div class="card">
+        <h2>🛌 第0-1周 · 急性期</h2>
+        <div class="info-box danger">
+          <strong>核心任务：消肿止痛 + 股四头肌激活 + 可耐受负重</strong><br>
+          半月板切除术后疼痛主要来源于关节镜入口和术后炎症反应，而非半月板本身。可耐受负重，但不要撑到痛。尽早激活股四头肌、控制术后肿胀是此阶段的核心目标。
+        </div>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>控制术后肿胀</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌激活</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>可耐受负重下行走（腋拐辅助）</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>被动屈膝达 90°</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第1-2周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肿胀开始消退</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌可自主收缩</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>直腿抬高可完成</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>疼痛可控</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>股四头肌等长收缩（基础）</h4>
+            <p>仰卧，膝后垫毛巾，绷紧大腿前侧下压使膝窝压向床面，感受髌骨向近端滑动，末端保持后放松。<strong>《骨科术后康复指南》指出：</strong>等长收缩可在不产生关节活动的前提下激活股四头肌，有效预防术后关节源性肌肉抑制（arthrogenic muscle inhibition）。</p>
+            <div class="meta"><span>保持 5-10秒</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🦶</div>
+          <div class="exercise-body">
+            <h4>踝泵（踝关节泵动） <span style="color:var(--danger);font-size:12px;">★ 预防血栓</span></h4>
+            <p>踝关节最大幅度背伸（勾脚尖，保持5秒）→跖屈（绷脚尖，保持5秒），反复进行。训练小腿肌肉的泵送作用，促进下肢静脉回流。<strong>《骨科术后康复指南》强调：</strong>此阶段制动状态下，踝泵是预防深静脉血栓最有效的手段之一，应尽可能多地进行。</p>
+            <div class="meta"><span>保持 5秒</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">🦵</div>
+          <div class="exercise-body">
+            <h4>坐位垂腿（被动屈膝） <span style="color:var(--danger);font-size:12px;">★ 早期活动度</span></h4>
+            <p>坐高椅或床边，患腿自然下垂，利用重力被动屈膝。<strong>《基础肌动学》指出：</strong>坐位垂腿利用重力产生持续的屈膝力矩，是恢复屈膝活动度最基础有效的方法。因半月板切除后无缝合处愈合限制，可在耐受范围内逐步增加屈膝角度。<br>
+            <span style="color:var(--danger);"><strong>退阶信号：</strong>如屈膝时出现关节前方尖锐痛或肿胀明显加重，提示关节内炎症反应过重，应减少持续时间或退回至无痛屈膝角度维持2-3天。</span></p>
+            <div class="meta"><span>范围 被动0-90°</span><span>每次 10分钟</span><span>每天 2-3次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🚶</div>
+          <div class="exercise-body">
+            <h4>可耐受负重行走</h4>
+            <p>腋拐辅助，患肢以可承受的力度着地行走。不以疼痛为代价，不痛就踩。</p>
+            <div class="meta"><span>根据疼痛调整</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>臀桥（双腿） <span style="color:var(--danger);font-size:12px;">★ 臀肌激活</span></h4>
+            <p>仰卧屈膝，双脚踩床与肩同宽，臀部发力将骨盆抬离床面至肩-髋-膝成一直线，最高点夹臀保持3-5秒后缓慢放下。<strong>《临床康复医学》指出：</strong>早期臀肌激活有助于预防术后臀肌抑制，改善骨盆稳定性，为后续脱拐行走打下基础。可在支具锁定于伸膝位下进行。</p>
+            <div class="meta"><span>保持 3-5秒</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 腋拐辅助，可耐受负重</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 通常无需支具，可佩戴软性护膝增加舒适度</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免长时间站立</span></div>
+            </div>
+            <div class="item">
+              <span class="dot" style="background:#f59e0b;"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免剧烈活动</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 1-2 weeks -->
+    <div class="phase-group" data-phase="m2">
+      <div class="card">
+        <h2>🚶 第1-2周 · 恢复活动期</h2>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝达 90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>被动屈膝达 110°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>逐步脱拐</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>基本恢复伸直和行走</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第2-4周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝≥90°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>伸膝达0°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>足尖点地行走无痛</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>直腿抬高 <span style="color:var(--danger);font-size:12px;">★ 股四头肌控制</span></h4>
+            <p>仰卧，健膝弯曲，患腿伸直绷紧后抬高15-20cm，末端保持后缓慢放下。<strong>《骨科术后康复指南》强调：</strong>抬腿全程必须保持膝关节完全伸直——若出现屈膝代偿（迟滞），说明股四头肌激活不足，应退回等长收缩训练。<br>
+            <span style="color:var(--danger);"><strong>退阶信号：</strong>如抬腿中出现膝关节无法保持伸直（迟滞），或在末端保持时出现代偿性骨盆后倾，说明股四头肌控制不足，应退回等长收缩巩固基础后重新进阶。</span></p>
+            <div class="meta"><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3-5秒</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🦵</div>
+          <div class="exercise-body">
+            <h4>仰卧足跟滑动（主动屈膝） <span style="color:var(--danger);font-size:12px;">★ 主动活动度</span></h4>
+            <p>仰卧，患脚踩床面，足跟不离开床面缓慢向后滑动使膝关节屈曲，在无痛范围末端保持3-5秒后缓慢伸直。<strong>《临床康复医学》指出：</strong>半月板切除后无缝合限制，允许早期主动屈膝活动。主动屈膝可同时激活股四头肌离心控制和腘绳肌协同收缩，有助于关节本体感觉的早期重建。</p>
+            <div class="meta"><span>范围 0-90°</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">📐</div>
+          <div class="exercise-body">
+            <h4>坐位末端伸膝 <span style="color:var(--danger);font-size:12px;">★ 克服伸肌迟滞</span></h4>
+            <p>坐位，患膝下方垫毛巾卷（使膝屈约30°），绷紧股四头肌、勾脚尖，将足跟缓慢抬离地面至膝关节完全伸直，末端保持3-5秒后缓慢放下。<strong>《AAOS骨科术后康复》指出：</strong>垫高伸膝将股四头肌收缩与膝关节末端伸直相结合，能有效克服术后伸肌迟滞。<strong>《基础肌动学》补充：</strong>膝屈30°位是VMO肌电活动最活跃的关节角度，在此角度下训练可优先激活VMO、改善髌骨滑行轨迹。</p>
+            <div class="meta"><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3-5秒</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🦶</div>
+          <div class="exercise-body">
+            <h4>提踵训练 <span style="color:var(--danger);font-size:12px;">★ 小腿泵送</span></h4>
+            <p>站立位扶支撑，双脚踮起脚尖至最高点，保持3-5秒后缓慢放下。<strong>《体能训练》指出：</strong>提踵训练可有效激活小腿三头肌，增强踝关节跖屈力量和行走推进阶段的蹬地力量，对术后步态恢复有积极意义。</p>
+            <div class="meta"><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3-5秒</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>单腿臀桥 <span style="color:var(--danger);font-size:12px;">★ 单侧臀肌力量</span></h4>
+            <p>仰卧，健腿伸直抬起（约与地面成45°），患腿屈膝踩床，臀部发力将骨盆抬离床面至肩-膝成一直线，最高点夹臀保持5秒，缓慢放下。<strong>《肌肉骨骼系統肌動學復健醫學基礎》指出：</strong>单腿臀桥能有效激活患侧臀肌，改善单腿支撑期的骨盆稳定性，是步态对称性恢复的基础训练。可从双腿臀桥起始，过渡至单腿。<br>
+            <span style="color:var(--danger);"><strong>退阶信号：</strong>如训练中出现患侧髋部下坠、骨盆旋转或腰部代偿性弓起，说明臀肌激活不足或核心控制不稳，应退回双腿臀桥巩固基础后再行进阶。</span></p>
+            <div class="meta">
+              <span>保持 5秒</span>
+              <span>每组 10-15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 逐步减少腋拐使用（两步一拐→单拐→脱拐）</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 步态训练：注意伸膝和足跟着地</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免长时间行走（< 30分钟）</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 2-4 weeks -->
+    <div class="phase-group" data-phase="m3">
+      <div class="card">
+        <h2>🚴 第2-4周 · 肌力重建期</h2>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>正常步态行走</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝达 110°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>闭链训练（下蹲）开始</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第4-6周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>主动屈膝≥110°</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>股四头肌肌力3+/5级</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>部分负重行走无痛</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>双腿微蹲（0-45°） <span style="color:var(--danger);font-size:12px;">★ 闭链基础</span></h4>
+            <p>站立扶栏杆，双膝微屈，重心均匀分布于双脚，慢速控制下蹲与站起，膝与脚尖方向一致，避免内扣。<strong>《基础肌动学》指出：</strong>闭链下蹲时股四头肌和腘绳肌同步收缩，产生关节共压缩力，增强膝关节动态稳定性。此阶段限制在45°以内，确保半月板切除后的关节面负荷可控。</p>
+            <div class="meta"><span>屈膝 0-45°</span><span>每组 12次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🚴</div>
+          <div class="exercise-body">
+            <h4>固定自行车（坐垫调高）</h4>
+            <p>坐垫调至最高位以减小屈膝角度，无阻力空蹬。逐步降低坐垫以增加屈膝范围。<strong>《AAOS骨科术后康复》推荐：</strong>自行车训练是安全的闭链有氧运动，可促进滑液循环、改善关节营养代谢，对半月板切除术后关节面的适应性重塑产生可控的低负荷刺激。</p>
+            <div class="meta"><span>每次 10分钟</span><span>无阻力</span><span>每天 1次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">📐</div>
+          <div class="exercise-body">
+            <h4>直腿抬高（踝部负重）</h4>
+            <p>踝部绑轻量沙袋（0.5-1kg），仰卧直腿抬高，末端保持后缓慢放下。<strong>《临床康复医学》</strong>认为：渐进抗阻下的直腿抬高可有效募集股四头肌和髂腰肌，且不对膝关节产生剪切应力，是此阶段安全有效的力量训练手段。</p>
+            <div class="meta"><span>负重 0.5-1kg</span><span>每组 15次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">↕️</div>
+          <div class="exercise-body">
+            <h4>坐位起立训练</h4>
+            <p>从高凳坐位起立，双脚均匀承重，慢速控制起立和坐下，训练离心控制能力。<strong>《体能训练》</strong>指出：坐-站转移是日常生活中最基础的闭链功能动作，恢复该动作的对称性控制是步态重建的前提。</p>
+            <div class="meta"><span>每组 10次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon green">🚶</div>
+          <div class="exercise-body">
+            <h4>站立位屈髋 <span style="color:var(--danger);font-size:12px;">★ 髋膝踝联动</span></h4>
+            <p>扶支撑站立，患腿屈膝上提（如高抬腿动作），在大腿抬至与地面平行前可控范围末端保持3秒后缓慢放下。全程保持躯干直立、膝对准脚尖。<strong>《体能训练》指出：</strong>站立位屈髋是开链下髋关节灵活性和协调性的基础训练，模拟步态摆动相的屈髋模式，有助于改善术后步态中患侧推进不足和骨盆代偿。</p>
+            <div class="meta"><span>每组 10-15次</span><span>一次 3组</span><span>每天 2次</span><span>保持 3秒</span>            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🩼</div>
+          <div class="exercise-body">
+            <h4>拄拐行走与步态进阶 <span style="color:var(--danger);font-size:12px;">★ 步态训练</span></h4>
+            <p>半月板切除术后可早期负重，但为保护关节仍建议拄拐过渡。<strong>双拐阶段（1-2周）：</strong>患腿可耐受范围内负重，"拐-患-健"三点步态。<strong>单拐阶段（2-4周）：</strong>健手持拐→拐与患腿同步迈出。单拐必须持于健侧。<strong>脱拐阶段（4周后）：</strong>弃拐独立行走，重点训练步态对称性——步幅、步速、支撑相时间两侧应对称。《骨科术后康复指南》强调：半月板切除术后早期拄拐可减少关节肿胀和疼痛，但不必过度保护——早期功能性活动有利于关节软骨营养。</p>
+            <div class="meta">
+              <span>每次 5-10分钟</span>
+              <span>每天 3-4次</span>
+              <span>双拐→单拐→脱拐</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 脱拐行走，注意步态对称</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 逐步增加行走距离</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免跑步、跳跃</span></div>
+            </div>
+            <div class="item">
+              <span class="dot blue"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免深屈膝（> 120°）</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 4-6 weeks -->
+    <div class="phase-group" data-phase="m4">
+      <div class="card">
+        <h2>🏋️ 第4-6周 · 力量训练期</h2>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>全范围关节活动度</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>力量训练逐步负重</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>平衡训练</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第6-12周的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>全范围活动度</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>可全负重脱拐行走</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>上下楼梯交替</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🦵</div>
+          <div class="exercise-body">
+            <h4>双腿下蹲（0-60°）</h4>
+            <p>双手可轻扶支撑维持平衡，慢速控制下蹲至60°，注意膝与脚尖方向一致，避免膝关节内扣。<strong>《基础肌动学》指出：</strong>屈膝超过60°后半月板残余部分的载荷呈非线性增长，此阶段限制在60°以内可在力量和安全性之间取得平衡。</p>
+            <div class="meta"><span>屈膝 0-60°</span><span>每组 12次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">↔️</div>
+          <div class="exercise-body">
+            <h4>单腿平衡训练</h4>
+            <p>患腿单腿站立，从30秒逐步增至1分钟。可闭眼或站于软垫增加难度。<strong>《Magee骨科物理治疗评估》</strong>指出：单腿站立时间不足30秒提示膝关节本体感觉功能显著下降。此训练有助于重建膝关节周围肌群的姿势控制能力。<br><span style="color:#EF4444;font-weight:700;">⚠️ 重要提醒：请在可完全单腿负重后方可开始此训练。</span></p>
+            <div class="meta"><span>保持 30-60秒</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">🦵</div>
+          <div class="exercise-body">
+            <h4>坐姿伸膝抗阻 <span style="color:var(--danger);font-size:12px;">★ VMO强化</span></h4>
+            <p>坐位，弹力带绕膝前侧固定于椅腿，伸膝对抗阻力。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>强调：开链伸膝最后30°是股四头肌内侧头（VMO）最活跃的范围，此训练有助于纠正髌骨滑行轨迹，预防髌股关节并发症。</p>
+            <div class="meta"><span>阻力 轻→中</span><span>每组 12次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🏔️</div>
+          <div class="exercise-body">
+            <h4>侧向台阶训练</h4>
+            <p>侧向上下台阶（高度10-15cm），患腿先上、健腿先下，全程控制。<strong>《临床康复医学》</strong>认为：侧向台阶训练通过冠状面负重转移，可有效激活臀中肌和股四头肌外侧头，纠正因术后保护性步态形成的臀肌抑制。</p>
+            <div class="meta"><span>台阶 10-15cm</span><span>每组 12次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>单腿臀桥 <span style="color:var(--danger);font-size:12px;">★ 单侧臀肌力量</span></h4>
+            <p>仰卧，健腿伸直抬起（约与地面成45°），患腿屈膝踩床，臀部发力将骨盆抬离床面至肩-膝成一直线，最高点夹臀保持5秒，缓慢放下。<strong>《肌肉骨骼系統肌動學復健醫學基礎》指出：</strong>单腿臀桥能有效激活患侧臀肌，改善单腿支撑期的骨盆稳定性，是步态对称性恢复的基础训练。</p>
+            <div class="meta">
+              <span>保持 5秒</span>
+              <span>每组 10-15次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">⬆️</div>
+          <div class="exercise-body">
+            <h4>正面上台阶 <span style="color:var(--danger);font-size:12px;">★ 单腿闭链力量</span></h4>
+            <p>面对台阶站立，患腿踩于台阶（高度起始10cm），健腿悬空。患腿发力蹬伸伸直，将身体完全升上台阶至单腿站立位，末端保持2-3秒后缓慢下放还原。全程保持躯干直立、患侧膝对准第二足趾、不内扣。<strong>《骨科术后康复指南》建议：</strong>正面上台阶是闭链单腿负重最理想的进阶动作之一，模拟步行上楼的功能模式，核心是动作质量而非高度。</p>
+            <div class="meta">
+              <span>台阶高度 10-15cm</span>
+              <span>每组 10-12次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">⬇️</div>
+          <div class="exercise-body">
+            <h4>下台阶训练 <span style="color:var(--danger);font-size:12px;">★ 离心控制</span></h4>
+            <p>站立于台阶（高度10cm），患腿支撑体重，健腿缓慢向下触地再还原。下降过程中患腿离心控制，膝对准第二足趾，保持躯干直立不倾斜。<strong>《骨科术后康复指南》建议：</strong>下台阶是步态中承重反应期的功能模拟，要求股四头肌离心控制膝关节屈曲，是单腿稳定性的重要评估指标。</p>
+            <div class="meta">
+              <span>台阶高度 10-15cm</span>
+              <span>每组 10-12次</span>
+              <span>一次 3组</span>
+              <span>每天 2次</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item">
+              <span class="dot mint"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 上下楼梯正常行走</span></div>
+            </div>
+            <div class="item">
+              <span class="dot peach"></span>
+              <div><span class="sub-text" style="font-weight:600;">✓ 注意膝关节周围肌群均衡发展</span></div>
+            </div>
+            <div class="item">
+              <span class="dot lavender"></span>
+              <div><span class="sub-text" style="font-weight:600;">✗ 避免高冲击活动</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 6-12 weeks -->
+    <div class="phase-group" data-phase="m5">
+      <div class="card">
+        <h2>🏃 第6-12周 · 功能训练期</h2>
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">🎯 阶段目标</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肌力达健侧80%</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>平衡能力基本恢复</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>逐步恢复低冲击运动</span></div>
+          </div>
+        </div>
+
+        <div class="key-box">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);padding:8px 16px;font-size:15px;">✅ 晋级至第12周以上的条件</div>
+          <div class="key-box-body" style="padding:8px 16px;">
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>肌力基本恢复</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>可低冲击运动（游泳/骑行）</span></div>
+            <div class="item"><span class="dot teal" style="margin-top:6px;"></span><span>无关节肿胀</span></div>
+          </div>
+        </div>
+
+        <h3>康复训练</h3>
+        <div class="exercise">
+          <div class="exercise-icon green">🏋️</div>
+          <div class="exercise-body">
+            <h4>保加利亚蹲 <span style="color:var(--danger);font-size:12px;">★ 单腿闭链力量</span></h4>
+            <p>背对凳子站立，患腿前伸、健腿向后搭于凳面（约30cm高），前腿支撑体重缓慢下蹲至前膝约60°，末端保持2-3秒后蹬伸站起。全程躯干直立、前膝对准第二足趾、不内扣。<strong>《体能训练》强调：</strong>保加利亚蹲是单腿闭链训练的高级形式，可同时训练股四头肌、臀肌和核心稳定性，对回归跑跳运动前的力量储备有重要意义。从浅蹲开始、控制下蹲幅度，逐步增加深度。</p>
+            <div class="meta"><span>屈膝 0-60°</span><span>每组 10次</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon blue">🏃</div>
+          <div class="exercise-body">
+            <h4>直线慢跑（从第8周开始）</h4>
+            <p>在柔软地面（跑道/草地）上直线慢跑，从5分钟开始逐步增加至15分钟。全程保持节奏稳定、步幅均匀。<strong>《AAOS骨科术后康复》建议：</strong>半月板切除后重返跑步应先从走-跑交替开始（走3分钟+跑1分钟，重复4-5次），以无痛和次日无肿胀加重为准逐步增量。</p>
+            <div class="meta"><span>每次 5-15分钟</span><span>走-跑交替</span><span>每周 3次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon orange">↔️</div>
+          <div class="exercise-body">
+            <h4>加强平衡训练（动态）</h4>
+            <p>在单腿站立基础上增加动态挑战——上肢抛接球、闭眼站立、站于软垫或BOSU球半球面。<strong>《Magee骨科物理治疗评估》</strong>指出：进阶平衡训练可进一步提升膝关节周围肌群的反射性姿势调整能力，降低运动中再损伤风险。</p>
+            <div class="meta"><span>每次 5组</span><span>保持 30秒/组</span><span>每天 1-2次</span></div>
+          </div>
+        </div>
+        <div class="exercise">
+          <div class="exercise-icon purple">🦵</div>
+          <div class="exercise-body">
+            <h4>侧步行走（弹力带）</h4>
+            <p>踝部绑弹力带，微蹲姿势下侧向行走，保持重心稳定、膝对准脚尖。<strong>《肌肉骨骼系統肌動學復健醫學基礎》</strong>指出：侧向行走是冠状面髋外展肌群（臀中肌、阔筋膜张肌）的核心训练动作，对膝关节侧向稳定性控制至关重要，也是预防髌股关节紊乱的有效手段。</p>
+            <div class="meta"><span>每组 10步/方向</span><span>一次 3组</span><span>每天 2次</span></div>
+          </div>
+        </div>
+        <div class="key-box" style="margin-top:16px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">📋 日常注意事项</div>
+          <div class="key-box-body">
+            <div class="item"><span class="dot mint"></span><div><span class="sub-text">✓ 继续肌力训练，每周3-4次</span></div></div>
+            <div class="item"><span class="dot peach"></span><div><span class="sub-text">✓ 低冲击有氧运动（游泳、骑行）</span></div></div>
+            <div class="item"><span class="dot lavender"></span><div><span class="sub-text">✓ 渐进增加运动量，监测关节反应</span></div></div>
+            <div class="item"><span class="dot rose"></span><div><span class="sub-text">✗ 避免急停、旋转等高危动作</span></div></div>
+            <div class="item"><span class="dot coral"></span><div><span class="sub-text">✗ 避免深蹲超过90°</span></div></div>
+          </div>
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Meniscectomy 12+ weeks -->
+    <div class="phase-group" data-phase="m6">
+      <div class="card">
+        <h2>⚡ 第12周以上 · 长期管理</h2>
+        <div class="info-box warn">
+          <strong>⚠️ 长期风险提示：</strong><br>
+          半月板部分切除后，膝关节软骨的保护减少。研究表明，术后15-20年发生膝关节骨关节炎的风险显著升高。<strong>肌力训练是保护关节的最佳手段。</strong>
+        </div>
+
+        <h3>回归运动推荐</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>运动类型</th><th>推荐程度</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>游泳、骑行、椭圆机</td><td>✅ 高度推荐</td><td>低冲击，对膝关节友好</td></tr>
+            <tr><td>直线跑步、健身房训练</td><td>⚠️ 可进行</td><td>注意循序渐进，控制运动量</td></tr>
+            <tr><td>篮球、足球、羽毛球</td><td>🔶 谨慎进行</td><td>旋转和急停对残余半月板负荷大</td></tr>
+            <tr><td>深蹲（全蹲）、硬拉大重量</td><td>🔶 谨慎进行</td><td>控制负重，逐步加大</td></tr>
+            <tr><td>马拉松、越野跑</td><td>🔶 需评估</td><td>长期高冲击，需肌力充分</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box success">
+          <strong>💡 终身建议</strong><br>
+          股四头肌和腘绳肌力量是半月板切除后膝关节最好的"减震器"。保持规律的力量训练，控制体重，选择低冲击的运动方式。
+        </div>
+
+        <div class="key-box" style="margin-top:20px;">
+          <div class="key-box-header" style="background:linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%);">🆘 需要立即就医的信号</div>
+          <div class="key-box-body">
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>膝关节突然剧痛，无法承重</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>关节明显肿胀且不消退</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>听到“啪”的响声后膝关节卡住无法活动（可疑交锁或桶柄状撕裂）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>体温升高伴膝关节红肿热痛（可疑感染）</span></div>
+            <div class="item"><span style="color:red;font-weight:700;font-size:13px;flex-shrink:0;">!</span><span>小腿肿胀疼痛、皮肤发红发热（可疑深静脉血栓）</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>参考10部专业著作制定 · 仅供参考，不替代专业医疗建议</p>
+  <p style="margin-top:4px;">所有康复方案应在您的主治医师或康复治疗师指导下进行</p>
+  <p style="margin-top:4px;font-size:12px;">© 2025 半月板术后康复指南 v3.0</p>
+</div>
+
+<script>
+  // Surgery type selector
+  const surgeryBtns = document.querySelectorAll('#surgerySelector .selector-btn');
+  const surgeryContents = document.querySelectorAll('.surgery-content');
+
+  surgeryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      surgeryBtns.forEach(b => b.classList.remove('active'));
+      surgeryContents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`.surgery-content[data-surgery="${btn.dataset.surgery}"]`).classList.add('active');
+    });
+  });
+
+  // Phase tabs (works independently within each surgery section)
+  document.querySelectorAll('.surgery-content').forEach(section => {
+    const tabs = section.querySelectorAll('.phase-tab');
+    const groups = section.querySelectorAll('.phase-group');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        groups.forEach(g => g.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(`.phase-group[data-phase="${tab.dataset.phase}"]`).classList.add('active');
+      });
+    });
+  });
+
+  // Checklists
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('label').classList.toggle('checked', cb.checked);
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
